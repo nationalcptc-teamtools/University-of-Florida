@@ -30,6 +30,7 @@ alias d='cd ~/Desktop'
 alias r='cd ~/'
 alias o='cd /opt'
 alias t='cd /tmp'
+alias less='/bin/batcat --paging=always --wrap never'
 
 # I'm bad at typing (typos)
 alias s='ls'
