@@ -1,6 +1,7 @@
 # Minimal .bashrc @adamkadaban
 
 
+# Nice things to have in a shell
 export SHELL=/bin/bash
 HISTCONTROL=ignorebothw
 HISTSIZE=1000
@@ -9,6 +10,7 @@ shopt -s cdspell
 shopt -s checkwinsize
 
 
+# This is so less has colors
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
@@ -17,9 +19,10 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+
+# These are aliases that i use to make things faster
 alias xclip='xclip -selection c'
 alias cmd='chmod +x'
-alias c='cd ~/Desktop/CTFs'
 alias down='cd ~/Downloads'
 alias dow='cd ~/Downloads'
 alias docs='cd ~/Documents'
@@ -27,12 +30,15 @@ alias d='cd ~/Desktop'
 alias r='cd ~/'
 alias o='cd /opt'
 alias t='cd /tmp'
+
+# I'm bad at typing (typos)
 alias s='ls'
 alias sl='ls'
 alias l='ls'
-alias python4='python3'
+alias python4='python3' 
 alias cd..='cd ..'
 
+# This will make a directory and then cd into it
 mkcd () {
   case "$1" in
     */..|*/../) cd -- "$1";; # that doesn't make any sense unless the directory already exists
@@ -46,6 +52,7 @@ mkcd () {
 
 alias mkdir='mkcd'
 
+# This puts things on the clipboard
 clip(){
     /usr/bin/cat "$@" | xclip -selection c
 }
@@ -59,6 +66,7 @@ alias toImg='img'
 alias toimg='img'
 
 
+# I like batcat, so this makes things nice if i forget i'm woring with source and a binary
 pcat(){
     if  file --mime "$1" | cut -d : -f 2 | grep "executable" >/dev/null 
     then
@@ -98,6 +106,8 @@ pcat(){
     fi
 }
 
+
+# I like batcat
 cat(){
     if  file --mime "$1" | cut -d : -f 2 | grep "executable" >/dev/null 
     then
@@ -137,6 +147,8 @@ cat(){
     fi
 }
 
+# Auto disassemble functions and/or main 
+
 disas(){
     if [ "$#" -eq "1" ]
     then
@@ -149,10 +161,14 @@ disas(){
     fi
 }
 
+# Get vmmap in an instance of a binary
+
 vmmap(){
     echo -e "iS\nquit\n" | r2 "$1"
     gdb -ex "file $1" -ex 'gef config context.layout ""' -ex 'entry-break' -ex 'vmmap' -ex 'quit'
 }
+
+# This uses radare and r2ghidra to get the ghidra pseudocode of something in the terminal
 pdg(){
     if [ "$#" -eq "1" ]
     then
@@ -165,4 +181,5 @@ pdg(){
     fi
 }
 
+# nxc is the loml. bash completion is so nice <3 <3 <3
 eval "$(register-python-argcomplete nxc)"
