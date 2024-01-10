@@ -1,0 +1,168 @@
+# Minimal .bashrc @adamkadaban
+
+
+export SHELL=/bin/bash
+HISTCONTROL=ignorebothw
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s cdspell
+shopt -s checkwinsize
+
+
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+alias xclip='xclip -selection c'
+alias cmd='chmod +x'
+alias c='cd ~/Desktop/CTFs'
+alias down='cd ~/Downloads'
+alias dow='cd ~/Downloads'
+alias docs='cd ~/Documents'
+alias d='cd ~/Desktop'
+alias r='cd ~/'
+alias o='cd /opt'
+alias t='cd /tmp'
+alias s='ls'
+alias sl='ls'
+alias l='ls'
+alias python4='python3'
+alias cd..='cd ..'
+
+mkcd () {
+  case "$1" in
+    */..|*/../) cd -- "$1";; # that doesn't make any sense unless the directory already exists
+    /*/../*) (cd "${1%/../*}/.." && mkdir -p "./${1##*/../}") && cd -- "$1";;
+    /*) mkdir -p "$1" && cd "$1";;
+    */../*) (cd "./${1%/../*}/.." && mkdir -p "./${1##*/../}") && cd "./$1";;
+    ../*) (cd .. && mkdir -p "${1#.}") && cd "$1";;
+    *) mkdir -p "./$1" && cd "./$1";;
+  esac
+}
+
+alias mkdir='mkcd'
+
+clip(){
+    /usr/bin/cat "$@" | xclip -selection c
+}
+
+# copy image on clipboard to file
+img(){
+    xclip -selection clipboard -t image/png -o > "$@.png"
+    xclip -selection c "$@.png"
+}
+alias toImg='img'
+alias toimg='img'
+
+
+pcat(){
+    if  file --mime "$1" | cut -d : -f 2 | grep "executable" >/dev/null 
+    then
+        if test -f "$1.c"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.c" "${@:2}"
+        elif test -f "$1.cpp"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.cpp" "${@:2}"
+        elif test -f "$1.asm"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.asm" "${@:2}"
+        elif test -f "$1.java"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.java" "${@:2}"
+        elif test -f "$1.cs"
+        then 
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.cs" "${@:2}"
+        elif test -f "$1.rs"
+        then 
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.rs" "${@:2}"
+        elif test -f "$1.go"
+        then                
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /usr/bin/cat "$1.go" "${@:2}"
+        else
+            /usr/bin/cat "$1" "${@:2}"
+        fi
+    else
+        /usr/bin/cat "$1" "${@:2}"
+    fi
+}
+
+cat(){
+    if  file --mime "$1" | cut -d : -f 2 | grep "executable" >/dev/null 
+    then
+        if test -f "$1.c"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.c" --paging=never "${@:2}"
+        elif test -f "$1.cpp"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.cpp" --paging=never "${@:2}"
+        elif test -f "$1.asm"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.asm" --paging=never "${@:2}"
+        elif test -f "$1.java"
+        then
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.java" --paging=never "${@:2}"
+        elif test -f "$1.cs"
+        then 
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.cs" --paging=never "${@:2}"
+        elif test -f "$1.rs"
+        then 
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.rs" --paging=never "${@:2}"
+        elif test -f "$1.go"
+        then                
+            printf "File %s is binary. Source:\n" "$1" >&2
+            /bin/batcat "$1.go" --paging=never "${@:2}"
+        else
+                /bin/batcat "$1" --paging=never -A "${@:2}"
+        fi
+    else
+        /bin/batcat "$1" --paging=never "${@:2}"
+    fi
+}
+
+disas(){
+    if [ "$#" -eq "1" ]
+    then
+        gdb -q -ex "file $1" -ex 'disas main' -ex 'quit'
+    elif [ "$#" -eq "0" ]
+    then
+        echo -e "Syntax:\n\tMain: disas <binary name>\n\n\tFunc: disas <binary name> <Func name>"
+    else
+        gdb -q -ex "file $1" -ex "disas $2" -ex 'quit'
+    fi
+}
+
+vmmap(){
+    echo -e "iS\nquit\n" | r2 "$1"
+    gdb -ex "file $1" -ex 'gef config context.layout ""' -ex 'entry-break' -ex 'vmmap' -ex 'quit'
+}
+pdg(){
+    if [ "$#" -eq "1" ]
+    then
+        echo -e "aaaa\npdg @ main\n" | r2 "$1" 2>/dev/null
+    elif [ "$#" -eq "0" ]
+    then
+        echo -e "Syntax:\n\tMain: pdg <binary name>\n\n\tFunc: pdg <binary name> <Func name>"
+    else
+        echo -e "aaaa\npdg @ $2\n" | r2 "$1" 2>/dev/null
+    fi
+}
+
+eval "$(register-python-argcomplete nxc)"
