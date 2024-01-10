@@ -15,3 +15,8 @@ Here are the files in the `payloads` folder, along with an explanation:
 ## Python Scripts
 The folder `python` contains scripts written for Python 3.
  - `portscan.py` - Quick and dirty port scan for pivoting without admin/root. Works on some Windows machines.
+
+
+## Setup
+The folder `setup` contains setup scripts that will deploy nextcloud and/or planka
+ - These will be used to make notetaking and task management during the engagement easier
