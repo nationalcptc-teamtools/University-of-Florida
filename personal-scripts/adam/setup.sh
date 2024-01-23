@@ -18,6 +18,7 @@ pip3 install pipx
 # Installing tools
 pipx install git+https://github.com/Pennyw0rth/NetExec
 pipx install git+https://github.com/Adamkadaban/NTLMCrack
+pipx install git+https://github.com/ThePorgs/impacket # I don't like the kali impacket 
 pipx ensurepath
 
 # cloudfox
