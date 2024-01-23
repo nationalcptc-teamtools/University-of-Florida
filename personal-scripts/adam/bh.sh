@@ -7,7 +7,8 @@ docker-compose up -d
 
 psql_id=$(docker ps -aqf "name=app-db")
 
-admin_id=$(docker exec -it $psql_id psql -qtAX -d bloodhound -U bloodhound -c "select id from users where principal_name='admin';")
+#admin_id=$(docker exec -it $psql_id psql -qtAX -d bloodhound -U bloodhound -c "select id from users where principal_name='admin';")
+
 
 # set the admin password to admin bc i can't figure out how to get the password from the logs
 docker exec -it $psql_id psql bloodhound bloodhound -c \
