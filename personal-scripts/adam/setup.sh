@@ -8,3 +8,4 @@ go install github.com/BishopFox/cloudfox@latest
 
 
 echo bashrc_addons >> ~/.bashrc
+echo tmux_dot >> ~/.tmux.conf
