@@ -30,5 +30,5 @@ mv cloudfox/cloudfox /usr/bin
 rm -r cloudfox cloudfox-linux-amd64.zip
 
 # Adding dotfiles
-echo bashrc_addons >> ~/.bashrc
-echo tmux_dot >> ~/.tmux.conf
+cat bashrc_addons >> ~/.bashrc
+cat tmux_dot >> ~/.tmux.conf
