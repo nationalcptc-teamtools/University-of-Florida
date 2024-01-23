@@ -1,11 +1,21 @@
 #!/bin/bash
 
+
+if [ "$(id -u)" != "0" ]; then
+    echo "You must be root to run this script."
+    exit 1
+fi
+
+
 # set default shell to bash
 chsh --shell /bin/bash $(whoami)
 
+echo "Installing dependencies"
 # install things
+apt install xclip golang bat wget curl unzip python3 python3-pip -y
 pip3 install pipx
-apt install xclip golang bat -y
+
+# Installing tools
 pipx install git+https://github.com/Pennyw0rth/NetExec
 pipx install git+https://github.com/Adamkadaban/NTLMCrack
 pipx ensurepath
@@ -18,5 +28,6 @@ unzip cloudfox-linux-amd64.zip
 sudo mv cloudfox/cloudfox /usr/bin
 rm -r cloudfox cloudfox-linux-amd64.zip
 
+# Adding dotfiles
 echo bashrc_addons >> ~/.bashrc
 echo tmux_dot >> ~/.tmux.conf
