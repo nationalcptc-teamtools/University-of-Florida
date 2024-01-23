@@ -12,7 +12,7 @@ chsh --shell /bin/bash $(whoami)
 
 echo "Installing dependencies"
 # install things
-apt install xclip golang bat wget curl unzip python3 python3-pip python3.11-venv -y
+apt install xclip golang bat wget curl unzip python3 python3-pip python3.11-venv docker.io docker-compose -y
 pip3 install pipx
 
 # Installing tools
