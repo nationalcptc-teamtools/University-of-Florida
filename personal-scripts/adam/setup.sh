@@ -12,7 +12,7 @@ chsh --shell /bin/bash $(whoami)
 
 echo "Installing dependencies"
 # install things
-apt install xclip golang bat wget curl unzip python3 python3-pip -y
+apt install xclip golang bat wget curl unzip python3 python3-pip python3.11-venv -y
 pip3 install pipx
 
 # Installing tools
@@ -25,7 +25,7 @@ pipx ensurepath
 cloudfox_latest=$(curl -s -I https://github.com/bishopfox/cloudfox/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
 wget "https://github.com/BishopFox/cloudfox/releases/download/$cloudfox_latest/cloudfox-linux-amd64.zip"
 unzip cloudfox-linux-amd64.zip
-sudo mv cloudfox/cloudfox /usr/bin
+mv cloudfox/cloudfox /usr/bin
 rm -r cloudfox cloudfox-linux-amd64.zip
 
 # Adding dotfiles
