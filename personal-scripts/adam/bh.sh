@@ -18,3 +18,4 @@ docker exec -it $psql_id psql bloodhound bloodhound -c \
 "update auth_secrets set digest='\$argon2id\$v=19\$m=1048576,t=1,p=2\$QUB3+B/dvvpbOYKT9Wr1EA==\$3sV71u+fW4kX+euamzIgOQ==';"
 
 
+echo "You can now log in with spam@example.com:admin"
