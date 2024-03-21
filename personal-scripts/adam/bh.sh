@@ -10,6 +10,9 @@ psql_id=$(docker ps -aqf "name=app-db")
 #admin_id=$(docker exec -it $psql_id psql -qtAX -d bloodhound -U bloodhound -c "select id from users where principal_name='admin';")
 
 
+# wait for db to be initialized before changing password
+sleep 5
+
 # set the admin password to admin bc i can't figure out how to get the password from the logs
 docker exec -it $psql_id psql bloodhound bloodhound -c \
 "update auth_secrets set digest='\$argon2id\$v=19\$m=1048576,t=1,p=2\$QUB3+B/dvvpbOYKT9Wr1EA==\$3sV71u+fW4kX+euamzIgOQ==';"
