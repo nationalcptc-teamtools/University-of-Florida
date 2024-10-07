@@ -26,11 +26,3 @@ else
     echo "Failed to mount the remote directory."
     exit 1
 fi
-
-# Option to unmount
-read -p "Do you want to unmount the directory now? (y/n): " unmount_choice
-
-if [[ "$unmount_choice" == "y" || "$unmount_choice" == "Y" ]]; then
-    fusermount -u "$local_mount"
-    echo "Unmounted $local_mount"
-fi
