@@ -3,7 +3,7 @@
 echo "Installing dependencies..."
 
 # List of dependencies to install
-dependencies=("sshfs" "asciinema" "tmux" "sliver")
+dependencies=("sshfs" "asciinema" "tmux" "sliver" "yq" "openssh-server")
 
 # Check if the script is being run as root
 if [ "$EUID" -ne 0 ]; then
