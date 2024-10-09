@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Check if sshfs is installed
-if ! command -v sshfs >/dev/null 2>&1; then
-    echo "sshfs is not installed. Installing now..."
-    sudo apt update
-    sudo apt install -y sshfs
-fi
-
 # Prompt for server details and credentials
 read -p "Enter the server IP address or hostname: " server_ip
 read -p "Enter the SSH username: " ssh_username
