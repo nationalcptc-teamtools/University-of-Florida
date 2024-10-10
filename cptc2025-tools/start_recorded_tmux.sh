@@ -16,7 +16,7 @@ username=$(yq -r '.username' "$CONFIG_FILE")
 recording_dir="$shared_dir/$username/terminal.cast"
 
 echo "Starting recording..."
-asciinema rec $recording_dir
+sudo asciinema rec $recording_dir
 
 # Start tmux in home dir
 cd ~
