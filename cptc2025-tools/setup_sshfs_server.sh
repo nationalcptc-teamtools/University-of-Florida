@@ -16,14 +16,14 @@ fi
 # Path to the config.yaml file
 CONFIG_FILE="config.yaml"
 # Extract variables from the YAML file
-ssh_username=$(yq '.ssh_username' "$CONFIG_FILE")
-ssh_password=$(yq '.ssh_password' "$CONFIG_FILE")
-shared_dir=$(yq '.remote_mount_dir' "$CONFIG_FILE")
-username=$(yq '.username' "$CONFIG_FILE")
+ssh_username=$(yq -r '.ssh_username' "$CONFIG_FILE")
+ssh_password=$(yq -r '.ssh_password' "$CONFIG_FILE")
+shared_dir=$(yq -r '.remote_mount_dir' "$CONFIG_FILE")
+username=$(yq -r '.username' "$CONFIG_FILE")
 
 # Create the user and set the password
 adduser --gecos "" --disabled-password "$ssh_username"
-echo "$ssh_username:$ssh_password" | chpasswd
+echo "$ssh_username:$ssh_password" | sudo chpasswd
 
 # Create the directory to share
 mkdir -p "$shared_dir"
