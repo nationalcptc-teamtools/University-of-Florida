@@ -38,5 +38,5 @@ else
 fi
 
 # Create directory with username
-user_shared_dir="$shared_dir/$username"
+user_shared_dir="$local_mount/$username"
 mkdir -p "$user_shared_dir"
