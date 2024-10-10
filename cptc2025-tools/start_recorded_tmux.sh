@@ -10,7 +10,7 @@ fi
 # Path to the config.yaml file
 CONFIG_FILE="config.yaml"
 # Extract variables from the YAML file
-local_mount=$(yq -r '.local_mount_dir' "$CONFIG_FILE")
+shared_dir=$(yq -r '.local_mount_dir' "$CONFIG_FILE")
 username=$(yq -r '.username' "$CONFIG_FILE")
 
 recording_dir="$shared_dir/$username/terminal.cast"
