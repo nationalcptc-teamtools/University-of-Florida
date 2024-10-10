@@ -13,6 +13,8 @@ if [[ "$EUID" -ne 0 ]]; then
    exit 1
 fi
 
+# Path to the config.yaml file
+CONFIG_FILE="config.yaml"
 # Extract variables from the YAML file
 ssh_username=$(yq '.ssh_username' "$CONFIG_FILE")
 ssh_password=$(yq '.ssh_password' "$CONFIG_FILE")
