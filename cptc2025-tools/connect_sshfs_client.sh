@@ -16,12 +16,12 @@ fi
 # Path to the config.yaml file
 CONFIG_FILE="config.yaml"
 # Extract variables from the YAML file
-server_ip=$(yq '.server_ip' "$CONFIG_FILE")
-ssh_username=$(yq '.ssh_username' "$CONFIG_FILE")
-ssh_password=$(yq '.ssh_password' "$CONFIG_FILE")
-remote_dir=$(yq '.remote_mount_dir' "$CONFIG_FILE")
-local_mount=$(yq '.local_mount_dir' "$CONFIG_FILE")
-username=$(yq '.username' "$CONFIG_FILE")
+server_ip=$(yq -r '.server_ip' "$CONFIG_FILE")
+ssh_username=$(yq -r '.ssh_username' "$CONFIG_FILE")
+ssh_password=$(yq -r '.ssh_password' "$CONFIG_FILE")
+remote_dir=$(yq -r '.remote_mount_dir' "$CONFIG_FILE")
+local_mount=$(yq -r '.local_mount_dir' "$CONFIG_FILE")
+username=$(yq -r '.username' "$CONFIG_FILE")
 
 # Create local mount point if it doesn't exist
 mkdir -p "$local_mount"
