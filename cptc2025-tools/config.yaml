@@ -1,5 +1,5 @@
 server_ip: "x.x.x.x"
-ssh_username: "user_here"
+ssh_username: "username"
 ssh_password: "your_password_here"
 remote_dir: "/mnt/shared"
 local_mount: "/mnt/shared"
