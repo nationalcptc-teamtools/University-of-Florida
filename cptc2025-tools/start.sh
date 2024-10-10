@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "${BASH_SOURCE[0]}"
+cd "${dirname BASH_SOURCE[0]}"
 
 chmod +x install_dependencies.sh
 sudo ./install_dependencies.sh
