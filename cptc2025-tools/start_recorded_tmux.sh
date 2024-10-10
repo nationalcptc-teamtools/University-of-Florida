@@ -13,10 +13,6 @@ CONFIG_FILE="config.yaml"
 shared_dir=$(yq -r '.local_mount_dir' "$CONFIG_FILE")
 username=$(yq -r '.username' "$CONFIG_FILE")
 
-recording_dir="$shared_dir/$username/terminal.cast"
-
 echo "Starting recording..."
 cd ~
-asciinema rec $recording_dir
-
-tmux
+asciinema rec terminal.cast --command=tmux --append
