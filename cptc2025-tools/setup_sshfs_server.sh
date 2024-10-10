@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if yq is installed (a command-line YAML processor)
 if ! command -v yq &> /dev/null
@@ -17,12 +17,7 @@ fi
 ssh_username=$(yq '.ssh_username' "$CONFIG_FILE")
 ssh_password=$(yq '.ssh_password' "$CONFIG_FILE")
 shared_dir=$(yq '.remote_mount_dir' "$CONFIG_FILE")
-
-# Ensure all values are present
-if [ -z "$ssh_username" ] || [ -z "$ssh_password" ] || [ -z "$remote_dir" ]; then
-  echo "Missing values in configuration file. Please ensure all fields are properly set."
-  exit 1
-fi
+username=$(yq '.username' "$CONFIG_FILE")
 
 # Create the user and set the password
 adduser --gecos "" --disabled-password "$ssh_username"
@@ -30,6 +25,9 @@ echo "$ssh_username:$ssh_password" | chpasswd
 
 # Create the directory to share
 mkdir -p "$shared_dir"
+# Create the directory to share with username
+user_shared_dir="$shared_dir/$username"
+mkdir -p "$user_shared_dir"
 
 # Set ownership and permissions
 chown "$ssh_username":"$ssh_username" "$shared_dir"

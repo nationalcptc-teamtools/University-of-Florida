@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Check if yq is installed (a command-line YAML processor)
 if ! command -v yq &> /dev/null
@@ -28,12 +28,7 @@ ssh_username=$(yq '.ssh_username' "$CONFIG_FILE")
 ssh_password=$(yq '.ssh_password' "$CONFIG_FILE")
 remote_dir=$(yq '.remote_mount_dir' "$CONFIG_FILE")
 local_mount=$(yq '.local_mount_dir' "$CONFIG_FILE")
-
-# Ensure all values are present
-if [ -z "$server_ip" ] || [ -z "$ssh_username" ] || [ -z "$ssh_password" ] || [ -z "$remote_dir" ] || [ -z "$local_mount" ]; then
-  echo "Missing values in configuration file. Please ensure all fields are properly set."
-  exit 1
-fi
+username=$(yq '.username' "$CONFIG_FILE")
 
 # Create local mount point if it doesn't exist
 mkdir -p "$local_mount"
@@ -48,3 +43,7 @@ else
     echo "Failed to mount the remote directory."
     exit 1
 fi
+
+# Create directory with username
+user_shared_dir="$shared_dir/$username"
+mkdir -p "$user_shared_dir"
