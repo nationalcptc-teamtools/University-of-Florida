@@ -9,13 +9,6 @@ fi
 
 # Path to the config.yaml file
 CONFIG_FILE="config.yaml"
-
-# Check if the config file exists
-if [ ! -f "$CONFIG_FILE" ]; then
-  echo "Configuration file $CONFIG_FILE not found!"
-  exit 1
-fi
-
 # Extract variables from the YAML file
 local_mount=$(yq '.local_mount_dir' "$CONFIG_FILE")
 username=$(yq '.username' "$CONFIG_FILE")
