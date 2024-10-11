@@ -15,11 +15,11 @@ chmod +x $SCRIPT2
 tmux new-session -d -s $SESSION_NAME -n 'SliverServer'
 
 # In the first window, run script1.sh
-tmux send-keys -t $SESSION_NAME:0 "$SCRIPT1" C-m
+tmux send-keys -t $SESSION_NAME:0 "sudo $SCRIPT1" C-m
 
 # Create the second window and run script2.sh
 tmux new-window -t $SESSION_NAME:1 -n 'SliverClient'
-tmux send-keys -t $SESSION_NAME:1 "$SCRIPT2" C-m
+tmux send-keys -t $SESSION_NAME:1 "sudo $SCRIPT2" C-m
 
 # Create the third window with a bash prompt
 tmux new-window -t $SESSION_NAME:2 -n 'Bash'
