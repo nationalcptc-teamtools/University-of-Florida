@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Check if yq is installed (a command-line YAML processor)
 if ! command -v yq &> /dev/null
 then
@@ -15,4 +17,4 @@ username=$(yq -r '.username' "$CONFIG_FILE")
 
 echo "Starting recording..."
 cd ~
-asciinema rec terminal.cast --command=tmux --append
+asciinema rec terminal.cast --command=$DIR/"$1"_tmux_setup.ssh --append
