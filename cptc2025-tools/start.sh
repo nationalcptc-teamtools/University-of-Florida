@@ -11,4 +11,4 @@ read -r  # Wait for user input
 
 sudo bash "./connect_sshfs_client.sh"
 
-bash "./start_recorded_tmux.sh"
+bash "./start_recorded_tmux.sh" client
