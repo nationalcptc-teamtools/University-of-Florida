@@ -28,7 +28,7 @@ mkdir -p "$local_mount"
 
 # Mount the remote directory using sshfs with password authentication
 echo "Mounting remote directory..."
-sshfs "$ssh_username@$server_ip:$remote_dir" "$local_mount" -o ssh_command="sshpass -p$ssh_password ssh"
+sshfs "$ssh_username@$server_ip:$remote_dir" "$local_mount" -o ssh_command="sshpass -p$ssh_password ssh -oStrictHostKeyChecking=accept-new"
 
 if [[ $? -eq 0 ]]; then
     echo "Successfully mounted $remote_dir to $local_mount"
