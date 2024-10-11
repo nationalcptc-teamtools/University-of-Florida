@@ -4,7 +4,7 @@
 set timeout -1
 
 # Define the prompt that sliver-server uses
-set prompt "[server] sliver > "
+set prompt ".* > "
 
 # Get the first argument passed to the script
 set lhost [lindex $argv 0]
