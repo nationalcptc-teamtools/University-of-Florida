@@ -34,6 +34,7 @@ mkdir -p "$user_shared_dir"
 # Set ownership and permissions
 chown "$ssh_username":"$ssh_username" "$shared_dir"
 chmod 755 "$shared_dir"
+setfacl -d -m u:$ssh_username:rwx $shared_dir
 
 # Start and enable SSH service
 systemctl enable ssh
