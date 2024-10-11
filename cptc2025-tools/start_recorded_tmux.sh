@@ -17,4 +17,5 @@ username=$(yq -r '.username' "$CONFIG_FILE")
 
 echo "Starting recording..."
 cd ~
+chmod +x $DIR/"$1"_tmux_setup.sh
 asciinema rec terminal.cast --command=$DIR/"$1"_tmux_setup.sh --append
