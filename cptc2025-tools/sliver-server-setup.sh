@@ -11,4 +11,4 @@ mkdir -p $shared_dir/sliver/profile
 mkdir -p $shared_dir/sliver/payloads
 
 chmod +x $DIR/sliver-server-setup.exp
-$DIR/sliver-server-setup.exp $server_ip $shared_dir
+expect $DIR/sliver-server-setup.exp $server_ip $shared_dir
