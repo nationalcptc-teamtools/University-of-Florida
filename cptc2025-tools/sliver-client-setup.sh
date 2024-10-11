@@ -7,5 +7,5 @@ CONFIG_FILE="$DIR/config.yaml"
 shared_dir=$(yq -r '.local_mount_dir' "$CONFIG_FILE")
 username=$(yq -r '.username' "$CONFIG_FILE")
 
-sudo sliver-client import $shared_dir/$username.cfg
+sudo sliver-client import $shared_dir/sliver/profile/operator.cfg
 sudo sliver-client
