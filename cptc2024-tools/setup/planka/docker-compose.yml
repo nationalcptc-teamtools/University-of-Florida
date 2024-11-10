@@ -19,7 +19,7 @@ services:
     ports:
       - 3000:1337
     environment:
-      - BASE_URL=http://<<<CHANGEME>>>:3000
+      - BASE_URL=http://10.22.1.12:3000
       - DATABASE_URL=postgresql://postgres@postgres/planka
       - SECRET_KEY=5663a8b8b556ae5177b886acf81eadbc4becb3ef191c25738db713aed2d0faf9bd9b8e70b06866acd2de765867a8d58f34d1b8254dade76c377dbb5c6fcd2e4f
 
@@ -35,7 +35,7 @@ services:
       # - KNEX_REJECT_UNAUTHORIZED_SSL_CERTIFICATE=false
 
       - DEFAULT_ADMIN_EMAIL=admin@cptc.global
-      - DEFAULT_ADMIN_PASSWORD=ChangeMe123!
+      - DEFAULT_ADMIN_PASSWORD=H4ckB4ckJ4ck
       - DEFAULT_ADMIN_NAME=CPTC Admin
       - DEFAULT_ADMIN_USERNAME=admin
 
