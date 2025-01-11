@@ -27,7 +27,7 @@ services:
       # - KNEX_REJECT_UNAUTHORIZED_SSL_CERTIFICATE=false
 
       - DEFAULT_ADMIN_EMAIL=cptc2025admin@email.invalid # Do not remove if you want to prevent this user from being edited/deleted
-      - DEFAULT_ADMIN_PASSWORD=changeme
+      - DEFAULT_ADMIN_PASSWORD=ChangeMe123!
       - DEFAULT_ADMIN_NAME=cptc2025admin
       - DEFAULT_ADMIN_USERNAME=cptc2025admin
 
