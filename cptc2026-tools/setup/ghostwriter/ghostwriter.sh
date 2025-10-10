@@ -10,7 +10,6 @@ fi
 # rest of script here
 echo "Running as root..."
 
-#!/bin/bash
 apt-get update
 apt-get install -y ca-certificates curl
 install -m 0755 -d /etc/apt/keyrings
