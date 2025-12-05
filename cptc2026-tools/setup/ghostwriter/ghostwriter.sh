@@ -32,4 +32,5 @@ cd Ghostwriter-6.0.4
 ./ghostwriter-cli-linux install
 docker cp $BACKUP_FILE ghostwriter-604-postgres-1:/backups
 yes | ./ghostwriter-cli-linux restore start.sql.gz
+./ghostwriter-cli-linux config allowhost "*"
 ./ghostwriter-cli-linux up
