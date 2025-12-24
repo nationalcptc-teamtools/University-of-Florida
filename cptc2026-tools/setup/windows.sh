@@ -1,3 +1,2 @@
 sudo apt-get update
-sudo apt-get install bloodhound
-su
+sudo apt-get install bloodhound bloodyad
