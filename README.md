@@ -4,7 +4,7 @@
 
 * Deployment scripts and tools are in [/cptc2026-tools](cptc2026-tools)
 	* These are tools we will deploy or use to make the pentest easier for us
-    * You'll find our old tools in [/cptc2025-tools](cptc-2025-tools)
+    * You'll find our old tools in [/cptc2025-tools](cptc2025-tools)
 
 * Notes are in [/notes](notes)
 	* This is for personal notes and cheatsheets
