@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install -y asciinema sliver seclists
+sudo apt install -y asciinema sliver
 
 # --- ASCIINEMA ---
 # Will only be run once
