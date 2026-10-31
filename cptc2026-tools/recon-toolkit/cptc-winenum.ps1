@@ -1,6 +1,6 @@
 # =============================================================================
 #  cptc-winenum.ps1  --  Windows "WinPEAS-lite": read-only local-privesc + AD
-#                        quick enum, only the paths we actually find. Run AFTER
+#                        quick enum, the common local-privesc paths. Run AFTER
 #                        you have a shell/session on a Windows host.
 #
 #  READ ONLY. It enumerates, it changes nothing.
@@ -9,12 +9,11 @@
 #     powershell -ep bypass -f cptc-winenum.ps1
 #     # or paste the contents into a session. Pipe to a file:  ... | Tee-Object win-enum.txt
 #
-#  [!! HIT] = chase it.  [PAST: ...] = the past CPTC finding it matches.
+#  [!! HIT] = chase it. 
 # =============================================================================
 $ErrorActionPreference = "SilentlyContinue"
 function Sec($t){ Write-Host "`n=== $t ===" -ForegroundColor Cyan }
 function Hit($t){ Write-Host "  [!! HIT] $t" -ForegroundColor Red }
-function Past($t){ Write-Host "     [PAST: $t]" -ForegroundColor Yellow }
 
 Write-Host "#### cptc-winenum.ps1 | $env:USERNAME@$env:COMPUTERNAME | $(Get-Date) ####" -ForegroundColor Cyan
 
@@ -24,7 +23,6 @@ $priv = whoami /priv
 $priv
 if($priv -match "SeImpersonatePrivilege.*Enabled" -or $priv -match "SeAssignPrimaryTokenPrivilege.*Enabled"){
   Hit "SeImpersonate / SeAssignPrimaryToken is ENABLED -> Potato attack (PrintSpoofer / GodPotato / JuicyPotato) = SYSTEM."
-  Past "service-account token abuse -> SYSTEM"
 }
 whoami /groups | Select-String "Admin","Backup Operators","Server Operators"
 
@@ -58,7 +56,6 @@ if($w.DefaultPassword){ Hit "autologon password in registry (DefaultUserName=$($
 Get-ChildItem C:\Users,C:\inetpub,C:\xampp,C:\wamp -Recurse -Include *.config,*.ini,*.xml,*.txt,*.ps1,*.bat 2>$null |
   Select-String -Pattern "password=|pwd=|secret=|apikey" 2>$null | Select-Object -First 15 |
   ForEach-Object { Hit ("possible cred: {0}:{1}" -f $_.Path, $_.LineNumber) }
-Past "a past CPTC: plaintext creds in SMB shares/config files"
 
 Sec "Patch level (old = kernel/privesc exploit)"
 Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 5 HotFixID, InstalledOn | Format-Table -Auto
@@ -69,9 +66,7 @@ if($env:USERDNSDOMAIN){
   Sec "Active Directory quick checks (domain: $env:USERDNSDOMAIN)"
   Hit "Domain-joined -> the big wins are AD, not local. From the attack box:"
   Write-Host "     nxc ldap <dc> -u <user> -p <pass> --kerberoasting kerb.txt   # then hashcat -m 13100"
-  Past "a past CPTC: kerberoastable svc acct -> crack -> escalate"
   Write-Host "     bloodhound-python -u <user> -p <pass> -d $env:USERDNSDOMAIN -ns <dc> -c all   # find delegation paths"
-  Past "a past CPTC: constrained/RBCD delegation -> Domain Admin"
   # MachineAccountQuota (RBCD prereq)
   try { $maq = (Get-ADObject (Get-ADDomain).DistinguishedName -Properties ms-DS-MachineAccountQuota)."ms-DS-MachineAccountQuota"; if($maq -gt 0){ Hit "MachineAccountQuota = $maq (>0) -> you can add a machine account (RBCD path)." } } catch {}
   # SMB signing / NTLMv1 are checked from the attack box with nxc

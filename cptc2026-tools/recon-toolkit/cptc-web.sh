@@ -19,7 +19,6 @@ C_SEC='\033[1;36m'; C_HIT='\033[1;31m'; C_PAST='\033[0;33m'; C_0='\033[0m'
 [ -t 1 ] || { C_SEC=; C_HIT=; C_PAST=; C_0=; }
 sec(){ printf "\n${C_SEC}=== %s ===${C_0}\n" "$1"; }
 hit(){ printf "${C_HIT}  [!! HIT] %s${C_0}\n" "$1"; }
-past(){ printf "     ${C_PAST}[PAST: %s]${C_0}\n" "$1"; }
 CURL="curl -sk --max-time 10"
 
 printf "${C_SEC}#### cptc-web.sh  |  %s  |  %s ####${C_0}\n" "$BASE" "$(date 2>/dev/null)"
@@ -44,18 +43,12 @@ for p in /.git/HEAD /.git/config /.env /.svn/entries /robots.txt /sitemap.xml \
   case "$CODE" in
     200|301|302|401|403)
       if [ "$CODE" = "200" ]; then hit "$p -> 200 OK (open!)"; else printf "   %s -> %s\n" "$p" "$CODE"; fi
-      case "$p" in
-        /.git/*) past "exposed .git -> dump the repo for source + secrets";;
-        /.env) past "exposed .env -> creds/keys";;
-        /swagger*|/api-docs|/openapi.json) past "a past CPTC: exposed API docs -> map the endpoints for IDOR/authz";;
-        /actuator*) past "Spring actuator -> /env, /heapdump can leak secrets";;
-      esac;;
+      ;;
   esac
 done
 
 sec "3) Default / weak login (manual, but check these first)"
 echo "   try admin:admin, admin:password, admin:<company>, and any creds from OSINT on: $BASE/login"
-past "a past CPTC: weak admin creds + hardcoded creds in JS"
 echo "   view-source + grep the JS bundle for secrets:"
 echo "      curl -sk $BASE/ | grep -oE 'src=\"[^\"]+\\.js\"' ; then curl the .js and grep -iE 'api|key|token|secret|password'"
 

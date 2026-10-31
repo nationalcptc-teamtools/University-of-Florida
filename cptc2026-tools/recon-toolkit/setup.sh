@@ -95,7 +95,7 @@ done
 cat <<'EOF'
 
 Next: point the recon tools at the target only when you're in scope. Suggested first moves
-once the engagement opens (see the study guide for the why behind each):
+once the engagement opens:
    nmap -sC -sV -oA scans/target <in-scope-range>
    o365spray --enum -U users.txt --domain <target-domain>
    nxc smb <range> -u users.txt -p spray.txt --continue-on-success
