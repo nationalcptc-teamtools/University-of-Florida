@@ -1,0 +1,116 @@
+% Template A -- Inject Response (grayscale / no color theming) (compile with XeLaTeX or LuaLaTeX)
+\documentclass[11pt,letterpaper]{article}
+% Font options: freefonts (Carlito/Gelasio), msfonts (Calibri/Georgia), autofonts (default)
+\usepackage[freefonts,mono]{bff-mono}
+
+\bffsetheader{Southeast-\# \textbullet\ INJ-\#\#\#}
+
+\begin{document}
+
+\bffbanner{Security Assessment \ \textperiodcentered\ \ Inject Response}
+
+\begin{bfftitleblock}
+  Inject ID    & INJ-\#\#\#             & Received   & 2026-11-07 HH:MM ET \\
+  Status       & \bffbadge{SUBMITTED}   & Due        & 2026-11-07 HH:MM ET \\
+  Prepared by  & Southeast-\# Team      & Engagement & Q4 2026 Pre-Expansion Test \\
+  Client       & Butters Family Farm    & Document   & BFF-SE\#-INJ-\#\#\# Rev 1.0 \\
+\end{bfftitleblock}
+
+\begin{bffmemo}
+  \bffm{To:} & Robin McGrass, Head of Security, Butters Family Farm \\
+  \bffm{From:} & Southeast-\# Penetration Testing Team \\
+  \bffm{Re:} & RE: [INJ-\#\#\#] [original subject line, verbatim] \\
+  \bffm{Date:} & [date] \\
+\end{bffmemo}
+
+\section{Request as Understood}
+[Restate the ask in one or two sentences. Cheapest way to catch a misread inject before it costs points.]
+
+\begin{bfffields}
+  \bfff{Deliverable requested:} & [\hspace{8em}] \\
+  \bfff{Deadline:} & [\hspace{8em}] \\
+  \bfff{Format requested:} & [email / memo / document / spreadsheet] \\
+\end{bfffields}
+
+\section{Response}
+\begin{bffcallout}
+  \bffcalloutlabel{BOTTOM LINE.}\enspace
+  [One to three sentences that answer the request outright. Lead with the conclusion
+  --- confirmed, completed, declined, or ``here is what we found'' --- then let the
+  rest of the memo support it.]
+\end{bffcallout}
+
+[Two to four short paragraphs. Plain professional English. No filler, no hedging you
+cannot support, no speculation. If you do not know something, say so and say how you
+would find out.]
+
+\section{Actions Taken}
+\begin{enumerate}
+  \item\relax [What you did, when, using what method.]
+  \item\relax [The verification step --- judges look for proof you confirmed the outcome rather than assumed it.]
+  \item\relax [Anything incomplete, and why.]
+\end{enumerate}
+
+\section{Findings and Evidence}
+\begin{itemize}
+  \item\relax [Observation] --- [impact, one sentence] --- see Appendix A, item A1.
+  \item\relax [Observation] --- [impact] --- see item A2.
+\end{itemize}
+
+\section{Risk and Business Impact}
+\begin{bfftable}{|l|l|X|l|}
+  \hline
+  \rowcolor{bffhead}\bffth{ID} & \bffth{Severity} & \bffth{Impact} & \bffth{Owner} \\ \hline
+  F-01 & \bffsev{High}   & [business consequence, not a CVSS score] & IT Operations \\ \hline
+  F-02 & \bffsev{Medium} & [business consequence]                   & Security \\ \hline
+  F-03 & \bffsev{Low}    & [business consequence]                   & App team \\ \hline
+\end{bfftable}
+
+\section{Assumptions and Constraints}
+\begin{bffcallout}
+  \bffcalloutlabel{Scoping notes}
+  \begin{itemize}
+    \item This response reflects information available to us as of [time] ET.
+    \item\relax [Out-of-scope items relevant here --- e.g.\ ``the VDI subnet and VPN were not
+          assessed and are excluded from these conclusions.'']
+    \item\relax [Any decision or access needed from you before the next step.]
+  \end{itemize}
+\end{bffcallout}
+
+\section{Recommendations and Next Steps}
+\begin{enumerate}
+  \item \bfflead{Immediate (0--48\,h):} [containment or quick win]
+  \item \bfflead{Short term (1--2 weeks):} [configuration or process fix]
+  \item \bfflead{Longer term:} [architectural or programmatic change]
+\end{enumerate}
+
+\section{Attachments}
+\begin{bfftable}{|l|X|l|}
+  \hline
+  \rowcolor{bffhead}\bffth{Ref} & \bffth{Item} & \bffth{Format} \\ \hline
+  D-1 & This response          & PDF  \\ \hline
+  D-2 & [supporting artifact]  & XLSX \\ \hline
+\end{bfftable}
+
+Please direct questions on this response to the engagement ticket at support.cp.tc.
+We will hold the current testing timeline unless you direct otherwise.
+
+\Needspace{6.5\baselineskip}
+Sincerely,
+
+\bffsignature{Southeast-\# Penetration Testing Team}
+  {Prepared for Butters Family Farm under the Q4 2026 engagement agreement}
+
+\clearpage
+\section*{Appendix A — Evidence Log}
+\begin{bfftable}{|l|l|X|l|}
+  \hline
+  \rowcolor{bffhead}\bffth{Ref} & \bffth{Time (ET)} & \bffth{Evidence / command} & \bffth{Source} \\ \hline
+  A1 & 11:26 & \texttt{nmap -sV -Pn <target>} (excerpt) & VDI-WIN-02 \\ \hline
+  A2 & 11:41 & \texttt{curl -I https://<target>}        & VDI-WIN-02 \\ \hline
+\end{bfftable}
+
+\bffconfidential{Confidential --- prepared exclusively for Butters Family Farm. Do not
+distribute outside the authorized recipient list.}
+
+\end{document}

@@ -1,0 +1,177 @@
+% bff.sty -- Butters Family Farm document theme (XeLaTeX / LuaLaTeX)
+% Mirrors the Word templates: Calibri body, Georgia headings, brown/tan palette.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bff}[2026/10/30 Butters Family Farm theme]
+
+%% ---------- Packages ----------
+\RequirePackage{anyfontsize}   % any \fontsize without size substitutions
+\RequirePackage{fontspec}
+\RequirePackage[letterpaper,top=1in,bottom=0.9in,left=1in,right=1in,
+                headheight=14pt,headsep=14pt,footskip=24pt]{geometry}
+\RequirePackage[table]{xcolor}
+\RequirePackage{microtype}
+\RequirePackage{titlesec}
+\RequirePackage{enumitem}
+\RequirePackage{array}
+\RequirePackage{tabularx}
+\RequirePackage{environ}
+\RequirePackage{needspace}
+\RequirePackage{etoolbox}
+\RequirePackage{colortbl}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage[hidelinks]{hyperref}
+
+%% ---------- Palette ----------
+\definecolor{bffdark}{HTML}{4A2F21}   % banner, H1, table header
+\definecolor{bffink}{HTML}{2C1C12}    % body text
+\definecolor{bffbrown}{HTML}{7B4A2D}  % H2, labels, header/footer
+\definecolor{bfftan}{HTML}{C9A06B}    % rules and borders
+\definecolor{bffcream}{HTML}{F6ECDC}  % title block / callout fill
+\definecolor{bffbadge}{HTML}{8FD0E3}  % status badge fill
+\definecolor{bffcrit}{HTML}{8C2F27}   % "Critical" severity only
+
+%% ---------- Fonts ----------
+% Package options (choose how fonts are found; this also controls log noise):
+%   msfonts    Calibri / Georgia / Consolas only (no probing, no fallbacks;
+%              use when the Microsoft fonts are installed)
+%   freefonts  Carlito / Gelasio / Liberation Mono (metric-compatible, free),
+%              falling back to Liberation Sans/Serif
+%   autofonts  (default) try the Microsoft fonts first, then the free ones.
+%              Probing a font that is missing makes XeTeX call mktextfm, which
+%              writes harmless "mktextfm Calibri" lines to missfont.log; pick
+%              msfonts or freefonts to avoid that.
+\newif\ifbff@ms \newif\ifbff@free \newif\ifbff@done
+\DeclareOption{msfonts}{\bff@mstrue\bff@freefalse}
+\DeclareOption{freefonts}{\bff@msfalse\bff@freetrue}
+\DeclareOption{autofonts}{\bff@mstrue\bff@freetrue}
+\ExecuteOptions{autofonts}
+\ProcessOptions\relax
+
+% \bff@pick{<cmd>}{<MS font>}{<free font>}{<last resort>}
+\newcommand{\bff@pick}[4]{%
+  \bff@donefalse
+  \ifbff@free
+    \ifbff@ms
+      \IfFontExistsTF{#2}{#1{#2}\bff@donetrue}{}%
+    \fi
+    \ifbff@done\else
+      \IfFontExistsTF{#3}{#1{#3}\bff@donetrue}{}%
+    \fi
+    \ifbff@done\else #1{#4}\fi
+  \else
+    #1{#2}%
+  \fi}
+\newcommand{\bff@setmain}[1]{\setmainfont{#1}}
+\newcommand{\bff@setserif}[1]{\newfontfamily\bffserif{#1}}
+\newcommand{\bff@setmono}[1]{\setmonofont{#1}[Scale=MatchLowercase]}
+\bff@pick{\bff@setmain}{Calibri}{Carlito}{Liberation Sans}
+\bff@pick{\bff@setserif}{Georgia}{Gelasio}{Liberation Serif}
+\bff@pick{\bff@setmono}{Consolas}{Liberation Mono}{DejaVu Sans Mono}
+
+%% ---------- Base text ----------
+\renewcommand{\normalsize}{\fontsize{10.95}{13.6}\selectfont}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\linespread{1.04}
+\AtBeginDocument{\color{bffink}\normalsize}
+
+%% ---------- Headings ----------
+\titleformat{\section}
+  {\bffserif\bfseries\fontsize{13}{16}\selectfont\color{bffdark}}
+  {\thesection.}{0.45em}{\MakeUppercase}
+  [\nointerlineskip\vspace{-\parskip}\vspace{-10pt}{\color{bfftan}\rule{\linewidth}{0.75pt}}]
+\titlespacing*{\section}{0pt}{11pt}{4pt}
+\titleformat{\subsection}
+  {\bffserif\bfseries\fontsize{11.5}{14}\selectfont\color{bffbrown}}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{3pt}
+
+\pretocmd{\section}{\Needspace{6\baselineskip}}{}{}
+
+%% ---------- Banner ----------
+% \bffbanner{Document type line}
+\newcommand{\bfforg}{Butters Family Farm}
+\newcommand{\bffbanner}[1]{%
+  \begin{tcolorbox}[enhanced,colback=bffdark,colframe=bffdark,boxrule=0pt,arc=0pt,
+      left=10pt,right=10pt,top=8pt,bottom=8pt,before skip=0pt,after skip=0pt]
+    {\bffserif\bfseries\fontsize{10}{12}\selectfont\addfontfeature{LetterSpace=18}%
+     \color{bffcream}\MakeUppercase{\bfforg}}\par\vspace{2pt}
+    {\fontsize{8}{10}\selectfont\color{bfftan}#1}
+  \end{tcolorbox}%
+  \nointerlineskip{\color{bffdark}\rule{\linewidth}{2pt}}\par\vspace{8pt}}
+
+%% ---------- Status badge ----------
+\newcommand{\bffbadge}[1]{{\setlength{\fboxsep}{2.5pt}%
+  \colorbox{bffbadge}{\fontsize{8}{9}\selectfont\bfseries\color{bffdark}#1}}}
+
+%% ---------- Title block (4 columns: label | value | label | value) ----------
+\newcommand{\bfflabel}[1]{{\fontsize{8}{10}\selectfont\bfseries\color{bffbrown}#1}}
+\newcolumntype{L}{>{\fontsize{8}{10}\selectfont\bfseries\color{bffbrown}}l}
+\newcolumntype{V}{>{\fontsize{9}{11}\selectfont}X}
+\NewEnviron{bfftitleblock}{%
+  \begin{tcolorbox}[enhanced,colback=bffcream,colframe=bffcream,boxrule=0pt,arc=0pt,
+      left=6pt,right=6pt,top=2pt,bottom=2pt,before skip=0pt,after skip=10pt]
+  \renewcommand{\arraystretch}{1.55}\setlength{\tabcolsep}{4pt}\setlength{\parskip}{0pt}
+  \begin{tabularx}{\linewidth}{@{}L V L V@{}}\BODY\end{tabularx}\end{tcolorbox}}
+
+%% ---------- Memo block (To / From / Re / Date) ----------
+\newcommand{\bffm}[1]{\makebox[0.9in][l]{\textbf{\textcolor{bffbrown}{#1}}}}   % memo label
+\newcommand{\bfff}[1]{\makebox[1.85in][l]{\textbf{\textcolor{bffbrown}{#1}}}}  % field label
+\NewEnviron{bffmemo}{%
+  \par\vspace{4pt}\begingroup\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{0pt}\setlength{\parskip}{0pt}%
+  \begin{tabularx}{\linewidth}{@{}l X@{}}\BODY\end{tabularx}\endgroup\par}
+
+%% ---------- Callout ----------
+\newcommand{\bffcalloutlabel}[1]{{\bffserif\bfseries\fontsize{9.5}{12}\selectfont\color{bffdark}#1}}
+\newtcolorbox{bffcallout}[1][]{enhanced,breakable=false,colback=bffcream,colframe=bfftan,
+  boxrule=1pt,arc=0pt,left=8pt,right=8pt,top=5pt,bottom=5pt,
+  before skip=4pt,after skip=8pt,parskip=3pt,#1}
+
+%% ---------- Tables ----------
+% \begin{bfftable}{|l|l|X|l|}
+%   \hline \rowcolor{bffdark}\bffth{A}&\bffth{B}&\bffth{C}&\bffth{D}\\ \hline
+%   ... \\ \hline
+% \end{bfftable}
+\newcommand{\bffth}[1]{\leavevmode{\fontsize{9}{11}\selectfont\bfseries\color{white}#1}}
+\newcommand{\bffsev}[1]{\textbf{\textcolor{bffdark}{#1}}}      % Low / Medium / High
+\newcommand{\bffsevcrit}[1]{\textbf{\textcolor{bffcrit}{#1}}}  % Critical only
+\NewEnviron{bfftable}[1]{%
+  \par\vspace{2pt}\begingroup\arrayrulecolor{bfftan}\setlength{\arrayrulewidth}{0.5pt}%
+  \renewcommand{\arraystretch}{1.5}\setlength{\tabcolsep}{5pt}\setlength{\parskip}{0pt}\fontsize{9.5}{11.5}\selectfont
+  \noindent\begin{tabularx}{\linewidth}{#1}\BODY\end{tabularx}\endgroup\par\vspace{4pt}}
+
+%% ---------- Lists ----------
+\setlist{nosep,itemsep=3pt,topsep=2pt,align=left}
+\setlist[enumerate,1]{label=\textbf{\textcolor{bffbrown}{\arabic*.}},leftmargin=1.7em,labelwidth=1.2em,labelsep=0.5em}
+\setlist[itemize,1]{label=\textcolor{bffbrown}{\textbullet},leftmargin=1.7em,labelwidth=1.2em,labelsep=0.5em}
+\newcommand{\bfflead}[1]{\textbf{\textcolor{bffbrown}{#1}}}   % bold brown lead-in
+
+%% ---------- Request-style fields (label: value) ----------
+\newenvironment{bfffields}{%
+  \par\vspace{2pt}\renewcommand{\arraystretch}{1.2}\setlength{\tabcolsep}{0pt}\setlength{\parskip}{0pt}\hspace*{1.5em}%
+  \begin{tabular}{@{}l l@{}}}{\end{tabular}\par}
+
+%% ---------- Signature + closing note ----------
+\newcommand{\bffsignature}[2]{%
+  \par\vspace{22pt}{\color{bffbrown}\rule{3.2in}{0.75pt}}\par\vspace{-4pt}
+  \textbf{#1}\par\vspace{-2pt}{\fontsize{8.5}{10}\selectfont\color{bffbrown}#2}\par}
+\newcommand{\bffconfidential}[1]{\par\vspace{8pt}{\fontsize{8.5}{10.5}\selectfont\itshape\color{bffbrown}#1}\par}
+
+%% ---------- Header / footer ----------
+\newcommand{\bffheaderright}{}
+\newcommand{\bffsetheader}[1]{\renewcommand{\bffheaderright}{#1}}
+\newcommand{\bffhf}{\fontsize{8.5}{10}\selectfont\color{bffbrown}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\bffhf \bfforg\ --- Confidential}
+\fancyhead[R]{\bffhf \bffheaderright}
+\fancyfoot[L]{\bffhf Prepared for \bfforg}
+\fancyfoot[R]{\bffhf Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrule}{{\color{bfftan}\hrule width\headwidth height 0.5pt}}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}%
+  \fancyfoot[L]{\bffhf Prepared for \bfforg}\fancyfoot[R]{\bffhf Page \thepage\ of \pageref*{LastPage}}}
+
+\endinput
