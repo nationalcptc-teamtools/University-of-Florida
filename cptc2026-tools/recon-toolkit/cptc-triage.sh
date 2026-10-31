@@ -51,7 +51,8 @@ done
 # --- FTP -------------------------------------------------------------------
 for h in $(portline "21/open"); do hit "$h: FTP(21) -> try anonymous login"; have curl && curl -s --max-time 8 "ftp://$h/" --user anonymous: 2>/dev/null | sed 's/^/        /'; done
 # --- DNS -------------------------------------------------------------------
-for h in $(portline "53/open"); do hit "$h: DNS(53) -> try a zone transfer (AXFR)"; have dig && { for z in oui.local yyy.chat local; do dig +short axfr @"$h" "$z" 2>/dev/null | head -3 | sed "s/^/        $z: /"; done; }; done
+SDOM=$(grep -E '^(search|domain)' /etc/resolv.conf 2>/dev/null | awk '{print $2}' | tr '\n' ' ')
+for h in $(portline "53/open"); do hit "$h: DNS(53) -> try a zone transfer (AXFR). Replace the zone names below with the target's own domain(s)."; have dig && { for z in $SDOM local; do dig +short axfr @"$h" "$z" 2>/dev/null | head -3 | sed "s/^/        $z: /"; done; }; done
 # --- Web -------------------------------------------------------------------
 for h in $(portline "80/open\|443/open\|8080/open\|3000/open\|5000/open\|7000/open"); do
   hit "$h: web -> dir-brute (gobuster/ffuf), check login for weak/default creds, proxy the API through Burp for IDOR + broken-authz + hardcoded JS secrets, test image/URL fields for SSRF"
