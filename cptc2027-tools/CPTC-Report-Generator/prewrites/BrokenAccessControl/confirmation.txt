@@ -1,0 +1,1 @@
+Using a web proxy, an unauthenticated request sent to [FULL URL OF RESTRICTED ENDPOINT] received a redirect response. The body of this response, however, contained the sensitive page content, confirming the access control bypass.

@@ -1,0 +1,1 @@
+<ol><li>Navigate to the Jellyfin web UI</li><li>Click on the 'jellyfin' user.</li><li>Observe successful login.</li></ol><div>[Include image]</div>

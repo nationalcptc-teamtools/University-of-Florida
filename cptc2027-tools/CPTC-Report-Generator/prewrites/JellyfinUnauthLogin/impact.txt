@@ -1,0 +1,1 @@
+A successful login by a potential attacker can result in service disruption through service shutdown or configuration changes. Logs, activity history, media files, and metadata are also visible to an attacker, resulting in privacy implications if PII is present.

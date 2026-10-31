@@ -1,0 +1,1 @@
+\team found that multiple systems had their firewalls disabled, resulting in a lack of network traffic filtering and increased exposure to threats.

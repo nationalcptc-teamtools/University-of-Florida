@@ -1,0 +1,1 @@
+By simply accessing <code>/api/auth/query/AllUsers</code> via a GET request as any user, sensitive information about other users will be revealed, as shown in [Figure]. This also occurs upon viewing the HTTP response to any request for another user's individual profile at <code>/api/auth/query/User?personID=\{ID\_HERE\}</code>.

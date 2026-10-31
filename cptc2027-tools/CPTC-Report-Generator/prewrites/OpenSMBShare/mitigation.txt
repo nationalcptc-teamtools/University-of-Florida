@@ -1,0 +1,1 @@
+<div>Make sure SMB shares are only accessible by authorized, logged-in users.</div><div><ol><li>Right-click the shared folder and Properties. Then, go to Advanced Sharing.</li><li>Click Permissions.</li><li>Remove read and write access from Everyone. Audit the users to list to ensure only authorized users have access to the shared folder.</li></ol></div>

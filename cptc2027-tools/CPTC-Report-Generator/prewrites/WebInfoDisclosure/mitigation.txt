@@ -1,0 +1,1 @@
+The <code>/api/auth/query/AllUsers</code> endpoint should be reconfigured to limit the data it exposes. Specifically, sensitive information such as email addresses and dates of birth should not be accessible to every user.

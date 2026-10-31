@@ -1,0 +1,1 @@
+Upgrade the affected services to the newest version as soon as possible. If this is not possible, \team recommends migrating to an alternative service.

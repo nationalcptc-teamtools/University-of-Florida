@@ -1,0 +1,1 @@
+Exploitation of this endpoint enables attackers to harvest sensitive customer information, significantly increasing the risk of identity theft and spam.

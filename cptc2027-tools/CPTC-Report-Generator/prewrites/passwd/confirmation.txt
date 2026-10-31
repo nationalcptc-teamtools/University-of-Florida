@@ -1,0 +1,1 @@
+<div>To confirm this vulnerability, the following command can be run to display the current permissions set on the /etc/passwd file.</div><div><pre><code>ls -l /etc/passwd</code></pre></div><div>As shown in Figure ???, the resulting permissions displayed were -rw-rw-rw-, indicating that all users can write the file.</div><div>[Include Image]</div>

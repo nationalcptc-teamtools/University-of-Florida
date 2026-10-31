@@ -1,0 +1,1 @@
+During \teamP security assessment, \team discovered an unauthenticated API endpoint on [IP], accessible via port [PORT]. The exposed endpoint allows malicious users to perform several critical operations without authentication, such as banning user accounts, enumerating users, and modifying sensitive account details.

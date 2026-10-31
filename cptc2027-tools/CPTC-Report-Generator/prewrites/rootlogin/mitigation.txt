@@ -1,0 +1,1 @@
+Prevent root from logging in over SSH. On OpenSSH on Debian-based systems, this can be done using&nbsp;<code>/etc/ssh/sshd\_config</code>. The&nbsp;<code>PermitRootLogin</code> directive should be set to <code>no</code>.

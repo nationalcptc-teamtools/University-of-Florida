@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CPTC Report Generator - Landing Page</title>
+  <link rel="stylesheet" type="text/css" media="all" href="/static/styles.css">
+</head>
+<body style="display: flex; flex-direction: column; align-items: center; gap: 20px; padding-top: 50px;">
+  <div id="main" style="display: flex; flex-direction: column; align-items: center; gap: 30px;">
+    
+    <!-- Image Uploads Row -->
+    <div style="display: flex; gap: 20px; justify-content: center;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <label>Company Logo</label>
+        <input type="file" id="logo-upload" accept="image/*">
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <label>Network Diagram</label>
+        <input type="file" id="diagram-upload" accept="image/*">
+      </div>
+    </div>
+
+    <!-- Navigation Links Row 1 -->
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <a href="/overviews" class="btn-link"><button>Overview</button></a>
+      <a href="/findings" class="btn-link"><button>Findings</button></a>
+      <a href="/appendix" class="btn-link"><button>Appendix</button></a>
+    </div>
+
+    <!-- Navigation Links Row 2 -->
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <a href="/fileshare" class="btn-link"><button>Fileshare</button></a>
+      <a href="/inventory" class="btn-link"><button>Inventory</button></a>
+      <a href="/report" class="btn-link"><button>Report</button></a>
+    </div>
+
+    <!-- Report Generation -->
+    <div style="margin-top: 20px;">
+      <button id="generate-report-btn" style="padding: 10px 20px; font-size: 1.2em; cursor: pointer;">Generate Report</button>
+      <p id="report-status" style="text-align: center; margin-top: 10px;"></p>
+    </div>
+
+  </div>
+
+  <script>
+    async function uploadImage(elementId, filename) {
+      const fileInput = document.getElementById(elementId);
+      if (!fileInput.files[0]) return;
+
+      const formData = new FormData();
+      formData.append('image', fileInput.files[0]);
+
+      try {
+        const res = await fetch(`/api/report-images/${filename}`, {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) throw new Error(await res.text());
+        alert(`${filename} uploaded successfully!`);
+      } catch (e) {
+        alert(`Error uploading ${filename}: ${e.message}`);
+      }
+    }
+
+    document.getElementById('logo-upload').addEventListener('change', () => uploadImage('logo-upload', 'CompanyLogo.png'));
+    document.getElementById('diagram-upload').addEventListener('change', () => uploadImage('diagram-upload', 'NetworkDiagram.png'));
+
+    document.getElementById('generate-report-btn').addEventListener('click', async () => {
+      const btn = document.getElementById('generate-report-btn');
+      const status = document.getElementById('report-status');
+      btn.disabled = true;
+      status.textContent = "Generating report... please wait.";
+      
+      try {
+        const res = await fetch('/api/generate-report', { method: 'POST' });
+        if (res.ok) {
+          status.textContent = "Report generated successfully!";
+        } else {
+          status.textContent = "Error generating report.";
+        }
+      } catch (e) {
+        status.textContent = "Request failed.";
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

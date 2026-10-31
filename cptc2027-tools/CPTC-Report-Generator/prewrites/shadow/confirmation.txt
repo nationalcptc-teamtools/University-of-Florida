@@ -1,0 +1,1 @@
+\team ran the following command to confirm that non-root users were able to write to the /etc/shadow file.<br><div><pre><code>ls -l /etc/shadow</code></pre></div><div>As seen in the Figure below, the resulting output was -rw-rw-r--, indicating that non-root users can write to the file.</div>

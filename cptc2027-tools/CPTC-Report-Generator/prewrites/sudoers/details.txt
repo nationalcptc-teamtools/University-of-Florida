@@ -1,0 +1,1 @@
+\team was able to find a misconfiguration in the sudoers file that allowed jane\_doe to execute bad\_binary as root without first entering a password. This misconfiguration could be exploited to allow for privilege escalation.

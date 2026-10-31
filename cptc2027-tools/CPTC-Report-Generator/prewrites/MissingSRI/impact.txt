@@ -1,0 +1,1 @@
+<div>Due to its flexibility, allowing untrusted JavaScript to run on a webpage is a serious security risk that can lead to</div><div><ul><li>Credential compromise</li><li>Manipulation of page content</li><li>Automatic downloads of potentially malicious files</li><li>Additional operating system details not otherwise accessible to the attacker</li></ul></div>

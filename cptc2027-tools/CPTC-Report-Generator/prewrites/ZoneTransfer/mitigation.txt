@@ -1,0 +1,1 @@
+<ul><li>Disable DNS Zone Transfers on the DNS server to prevent unauthorized access to domain information.</li><li>Configure the DNS server to only allow zone transfers to trusted IP addresses.</li><li>Implement network-level security controls, such as firewalls, to restrict access to the DNS server.</li></ul>

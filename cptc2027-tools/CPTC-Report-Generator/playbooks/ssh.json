@@ -1,0 +1,6 @@
+[
+  {
+    "text": "Use any SSH keys you find",
+    "cmd": "ssh -i KEY_FILE"
+  }
+]

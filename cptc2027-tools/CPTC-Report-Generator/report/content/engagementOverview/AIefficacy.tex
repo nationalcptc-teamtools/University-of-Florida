@@ -1,0 +1,14 @@
+While the integration of Agentic AI provided significant operational advantages, it also introduced specific limitations requiring human oversight. The following analysis outlines the impact of this workflow on the engagement:
+
+\bigskip
+
+
+\paragraph{Strengths}
+
+\begin{itemize}
+\item \textbf{Velocity:} The workflow significantly accelerated the transition from "Scanning" to "Exploitation." By automating the parsing of service versions, the team could immediately focus on high-value targets, such as the default \texttt{\detokenize{guest:guest}} credentials found on the Ballast Control System [4].\item \textbf{Depth \& Data Correlation:} The AI demonstrated a superior ability to retain and correlate disparate data points. It successfully mapped the exposed LFI endpoint in \texttt{\detokenize{/api/download_csv.php}} to the backend MySQL database version (5.7.44) [5][7], ensuring the full attack chain was documented accurately.\item \textbf{Consistency: }The use of AI ensured a uniform voice and rigorous standardization in the final deliverable. This eliminated human error in repetitive tasks, such as transcribing IP addresses (e.g., 10.0.1.13) and formatting impact statements regarding the CIA Triad [8].
+\end{itemize}\paragraph{Limitations}
+
+\begin{itemize}
+\item \textbf{Hallucinations:} The model occasionally generated "false positives," inferring the existence of files or directories that did not exist on the target system. For example, during the LFI enumeration, the AI suggested theoretical file paths that required manual validation against the target Linux host [9].\item \textbf{Lack of Business Context:} The AI lacked an intrinsic understanding of All Ports Tours' business logic. While it could identify that the Bridge Command Center was unauthenticated, it viewed this merely as a web vulnerability. It required human analysts to contextualize the catastrophic physical risk of a ship changing course or speed [10].\item \textbf{Operator Understanding Gap:} Reliance on AI for finding generation poses a risk where the operator may identify \textit{that} a breach is possible without understanding \textit{how} it functions. To mitigate this, we manually verified every finding to ensure that the team understood the underlying mechanics (e.g., the specific directory traversal logic in the API) to provide accurate remediation advice to developers [11]
+\end{itemize}\bigskip

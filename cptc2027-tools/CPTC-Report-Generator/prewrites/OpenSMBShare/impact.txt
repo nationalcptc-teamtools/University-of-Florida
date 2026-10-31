@@ -1,0 +1,1 @@
+The open file share discloses sensitive internal information about \client . It also allows read/write access, so files that could be accessed by users can be replaced. For example, there is a KeePass executable. If this executable is used daily, an attacker could replace it with a malicious executable and be able to obtain the user’s master password.

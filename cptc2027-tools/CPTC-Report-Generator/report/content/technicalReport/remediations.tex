@@ -1,0 +1,151 @@
+\subsection{Remediation of Previous Findings}
+
+    \team would like to thank \client for their attention to the previously reported vulnerabilities during the earlier engagement on November 16th. \team has assessed the remediation efforts and included their statuses in the table below.
+
+    For any vulnerability that remains exploitable (with remediation status "Not Remediated"), details on discovery, validation, and remediation efforts are detailed in a technical finding. For vulnerabilities that have been fully addressed (Remediation status "Remediated"), a brief explanation supporting \teamP determination that the vulnerability no longer poses a threat is provided in the appendix. Furthermore, some findings are marked as "Partially Remediated," indicating that some mitigation measures have been applied since the previous engagement; however, the vulnerability is still believed to be present. These findings are discussed in a dedicated section of the technical report.
+    
+    Please refer to \teamP previous report for additional details on the validation, impact, and remediation of these findings.     Each finding has a finding ID preceding it that can be used to cross-reference with the initial report. 
+
+    % % Remediated Findings % %
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationHeader{Remediated}
+    
+    % Critical Findings
+    \renewcommand{\currentFindingColor}{criticalPurple}
+    
+    \remediationEntry{C2: Exposed Bridge Command Center Interface Allowing Ship Control}{Not Remediated}
+    
+    \remediationEntry{C3: All Users Granted Remote Control of DECKHAND-01}{Not Remediated}
+
+    \remediationEntry{C4: Weak Credentials on Cruissant Chat}{Remediated}
+
+    \remediationEntry{C6: Default Credentials on Mongo Express Dashboard}{Remediated}
+   
+
+    % High Findings
+    \renewcommand{\currentFindingColor}{highRed}
+
+
+    % Medium Findings
+    \renewcommand{\currentFindingColor}{mediumOrange}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{M1: Sensitive Files Exposed in SMB Share with Read/Write Permissions}{Remediated}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{M2: Default Password for New Users Visible in Onboarding Packet in Galley...}{Remediated}
+
+    \remediationEntry{M3: Vulnerable MySQL 8.0.43 Version}{Remediated}
+
+    % Low Findings
+    %\renewcommand{\currentFindingColor}{lowGreen}
+    %\remediationEntry{L2: Exposed Session Tokens}{Remediated}
+
+    % Informational Findings
+    \renewcommand{\currentFindingColor}{infoBlue}
+
+    \renewcommand{\currentFindingBackground}{mediumOrange}
+    \remediationEntry{I1: Null SMB Logon}{Partially Remediated}
+
+    \renewcommand{\currentFindingBackground}{mediumOrange}
+    \remediationEntry{I2: End of Life MySQL}{Remediated}
+
+
+    \newpage
+    % % Partially Remediated Findings % %
+    \renewcommand{\currentFindingBackground}{mediumOrange}
+    \remediationHeader{Partially Remediated}
+    
+    % Critical Findings
+    \renewcommand{\currentFindingColor}{criticalPurple}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{C5: Unauthenticated Access to Lido Deck Climate Control System}{Not Remediated}
+
+    % High Findings
+    \renewcommand{\currentFindingColor}{highRed}
+
+    \remediationEntry{H2: Exposed User Credentials in Messages}{Remediated}
+
+    \remediationEntry{H3: Exposed Files Containing Customer Information and Credentials}{Remediated}
+
+    \remediationEntry{H4: Reverse Shell on Lido Deck Control Panel}{Remediated}
+
+    % Medium Findings
+    \renewcommand{\currentFindingColor}{mediumOrange}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{M1 Anonymous FTP on FileZilla}{Remediated}
+
+    \remediationEntry{M6: Exposed API Documentation}{Remediated}
+
+    % Low Findings
+    \renewcommand{\currentFindingColor}{lowGreen}
+
+    \renewcommand{\currentFindingBackground}{mediumOrange}
+    \remediationEntry{L1 Windows Defender and Firewall Disabled}{Partially Remediated}
+
+    %\renewcommand{\currentFindingBackground}{highRed}
+    %\remediationEntry{L2 Various Misconfigurations in Email Server}{Not Remediated}
+
+    \renewcommand{\currentFindingBackground}{highRed}
+    \remediationEntry{L3 Multiple Coercion Vulnerabilities}{Not Remediated}
+
+    % Informational Findings
+    \renewcommand{\currentFindingColor}{infoBlue}
+
+    \renewcommand{\currentFindingBackground}{mediumOrange}
+    \remediationEntry{I1 NTLMv1 is Default for Network Authentication}{Partially Remediated}
+
+
+    
+    % % Not Remediated Findings % %
+    \renewcommand{\currentFindingBackground}{highRed}
+    \remediationHeader{Not Remediated}
+    
+    % Critical Findings
+    \renewcommand{\currentFindingColor}{criticalPurple}  
+    \remediationEntry{C1: Network-Level Authentication Disabled for RDP}{Not Remediated}
+
+    % High Findings
+    \renewcommand{\currentFindingColor}{highRed}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{H1: Stored Cross-Site Scripting (XSS) and HTML Injection}{Remediated}
+
+    \remediationEntry{H5: Web Content Served Over Unencrypted HTTP}{Remediated}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{H6 NTLM v1 Hash Enabled}{Remediated}
+
+    % Medium Findings
+    \renewcommand{\currentFindingColor}{mediumOrange}
+
+    \remediationEntry{M4: Exposed Traefik Proxy Management Interface}{Remediated}
+
+    \remediationEntry{M5: Client-Side Trust Enables Price and Room Manipulation}{Remediated}
+
+    \renewcommand{\currentFindingBackground}{lowGreen}
+    \remediationEntry{M7 Kerberoastable Account}{Remediated}
+
+    % Low Findings
+    \renewcommand{\currentFindingColor}{lowGreen}
+
+    \renewcommand{\currentFindingBackground}{highRed}
+    \remediationEntry{L2 Various Misconfigurations in Email Server}{Not Remediated}
+
+    % Informational Findings
+    \renewcommand{\currentFindingColor}{infoBlue}
+
+    \renewcommand{\currentFindingBackground}{mediumOrange}
+    \remediationEntry{I1 NTLMv1 is Default for Network Authentication}{Partially Remediated}
+    
+    % Example of partially remediated
+    % \renewcommand{\currentFindingBackground}{lowGreen}
+    % \renewcommand{\currentFindingColor}{criticalPurple}
+    % \remediationEntry{Second Vulnerability}{Remediated}
+    
+    % % No Remediations
+    % \renewcommand{\currentFindingBackground}{highRed}
+    % \renewcommand{\currentFindingColor}{criticalPurple}            
+    % \remediationEntry{Third Vulnerability}{Not Remediated} 

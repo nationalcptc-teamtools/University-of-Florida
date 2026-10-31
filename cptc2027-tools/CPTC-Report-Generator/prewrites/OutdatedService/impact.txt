@@ -1,0 +1,1 @@
+Successful exploitation allows an adversary the ability to exfiltrate consumer PII and intellectual property, impersonate administrators, disrupt operations, and publicize this data. Such a data breach, if publicized, may lead&nbsp; to loss of trust from investors and consumers, resulting in a significant financial burden and a damaged brand image.

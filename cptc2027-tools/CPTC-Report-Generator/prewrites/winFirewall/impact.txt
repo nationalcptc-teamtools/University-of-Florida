@@ -1,0 +1,1 @@
+Disabling the firewall increases the attack surface. Adversaries may establish network-based persistence, such as deploying a bind shell, without requiring elevated privileges.

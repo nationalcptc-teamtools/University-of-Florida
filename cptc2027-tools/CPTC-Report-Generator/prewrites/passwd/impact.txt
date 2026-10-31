@@ -1,0 +1,1 @@
+<div>With any user able to modify the /etc/passwd file, root privileges may now be made available to malicious users, compromising the system and the confidentiality of the data that it stores.</div><div><b><br></b></div><div><b>Compliance Violations:</b></div><div><ul><li>TSA 3157 7.00A</li><li>TSA 3157 7.06</li></ul></div>

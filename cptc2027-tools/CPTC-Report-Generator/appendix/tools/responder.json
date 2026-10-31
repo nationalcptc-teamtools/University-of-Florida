@@ -1,0 +1,1 @@
+{"name": "Responder", "version": "v3.1.5.0", "link": "https://gitlab.com/kalilinux/packages/responder", "description": "Responder can allow an attacker to maliciously respond to various name server requests\u00a0on a domain and can be used as an easy way to view authentication attempts over the network when done to the client running Responder."}

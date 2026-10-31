@@ -1,0 +1,10 @@
+[
+  {
+    "text": "Ensure traffic is SSH-encrypted",
+    "cmd": "ssh -X USERNAME@HOSTNAME"
+  },
+  {
+    "text": "Check for weak key CVEs",
+    "cmd": "https://www.x41-dsec.de/lab/advisories/x41-2017-001-xorg/"
+  }
+]

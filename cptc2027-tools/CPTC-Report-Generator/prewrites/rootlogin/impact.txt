@@ -1,0 +1,1 @@
+<div>Login being allowed through default accounts present on the majority of systems (such as `root`) opens \client up to brute-forcing attacks over SSH. Although this may not be an issue if \client has a strong, consistent password policy.</div><div><br></div><div><b>Compliance Violations:</b></div><div><ul><li>CIS 4.7</li></ul></div>

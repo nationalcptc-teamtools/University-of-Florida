@@ -1,0 +1,1 @@
+The information page was accessible without authentication by navigating directly to [URL of Debug Page]. The page revealed extensive internal system details, including running software versions, loaded modules, and environment variables.

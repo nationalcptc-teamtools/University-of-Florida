@@ -1,0 +1,1 @@
+\team identified that the <code>&gt;WEBSITE&gt;</code> web application relies entirely on client-side authentication for administrative access. This implementation exposes hard-coded credentials that can be easily retrieved using built-in browser tools, potentially allowing unauthorized access to the system.

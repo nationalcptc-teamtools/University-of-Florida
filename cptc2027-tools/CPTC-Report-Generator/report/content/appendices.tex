@@ -1,0 +1,55 @@
+\section{Appendices}
+
+\renewcommand{\currentFindingColor}{black}
+\renewcommand{\currentFindingBackground}{black}
+
+\newAppendix{Penetration Testing Execution Standard} \label{sec:../appendix/entries/penetration-testing-execution-standard}
+To ensure thorough testing of the All Ports Tours network, Finals 11 followed the Penetration Testing Execution Standard (PTES), which was developed by a team of information security practitioners with the intention of providing businesses and security service providers with a standard language and scope for penetration tests.
+
+\bigskip
+
+
+This methodology is divided into seven distinct steps, as outlined below:
+
+\begin{enumerate}
+\item \textbf{Pre-Engagement Interactions:} This stage involved communication with All Ports Tours to define the scope, provide context briefings, and set goals.\item \textbf{Intelligence Gathering:} During this stage, Finals 11 collected background information on the client’s infrastructure, whether obtained through open-source intelligence (e.g., Google searches) or provided directly by the client, to build a detailed knowledge base of the system being tested.\item \textbf{Threat Modeling:} After compiling all available information, Finals 11 analyzed it to identify high-value targets and potential exploitation paths.\item \textbf{Vulnerability Analysis: }Once potential pathways to compromise the system were identified, Finals 11 conducted vulnerability analysis to find evidence of technical weaknesses.\item \textbf{Exploitation:} In this stage, Finals 11 carried out the necessary steps to exploit the confirmed vulnerabilities.\item \textbf{Post-Exploitation:} After compromising one or more components of the system, Finals 11 moved to the post-exploitation phase to determine if the exploited vulnerabilities could lead to further access or control (e.g., through privilege escalation).\item \textbf{Reporting:} Here, Finals 11 compiled all techniques, findings, and recommended remediations into a final report for All Ports Tours to review and enhance their security posture.
+\end{enumerate}
+\newpage
+
+\newAppendix{Tools Used} \label{sec:toolsAppendix}
+\toolref{ADMiner}{v1.7.0}{ADMiner is a tool that will use data uploaded via BloodHound to automatically find attackpaths and security violations on a domain.}{https://github.com/Mazars-Tech/AD\_Miner}
+
+\toolref{AzureHound}{v2.2.1}{AzureHound is a tool used for Active Directory assessments, providing discovery and enumeration of Azure Active Directory misconfigurations and privilege escalation paths.}{https://github.com/SpecterOps/AzureHound}
+
+\toolref{BloodHound}{v6.2.0}{BloodHound maps Active Directory objects to identify privilege escalation and lateralmovement paths within networks.}{https://github.com/SpecterOps/BloodHound}
+
+\toolref{BloodHound.py}{v1.7.2}{BloodHound.py will remotely collect Active Directory information via LDAP for the purpose of uploading data to BloodHound.}{https://github.com/dirkjanm/BloodHound.py/tree/bloodhound-ce}
+
+\toolref{BloodHound.py}{v1.7.2}{BloodHound.py will remotely collect Active Directory information via LDAP for the purpose of uploading data to BloodHound.}{https://github.com/dirkjanm/BloodHound.py/tree/bloodhound-ce}
+
+\toolref{Burp Suite}{v2024.9.3}{Burp Suite is a web application testing platform for intercepting, modifying, and analyzing HTTP requests.}{https://portswigger.net/burp}
+
+\toolref{DPAT}{v1.0}{DPAT - The Domain Password Audit Tool for Pentesters - is a tool that will use cracked password hashes in order to determine statistics about a company’s password. These statistics can be used to find trends that may lead to worsened security posture.}{https://github.com/clr2of8/DPAT}
+
+\toolref{Enum4Linux}{v0.9.1}{Enum4linux is a tool for enumerating information from Windows and Samba systems.}{https://github.com/CiscoCXSecurity/enum4linux}
+
+\toolref{ffuf}{v2.1.0}{FFUF is a web fuzzing tool for finding files, directories, API endpoints, and potential vulnerabilities.}{https://github.com/ffuf/ffuf}
+
+\toolref{Gobuster}{v3.6.0}{Gobuster, similar to FFUF, specializes in web enumeration, including s3 buckets and virtual hosts.}{https://github.com/OJ/gobuster}
+
+\toolref{Hashcat}{v6.2.6}{Hashcat is a tool that will attempt to crack a password hash given a wordlist.}{https://github.com/hashcat/hashcat}
+
+\toolref{Impacket}{v0.12.0}{Impacket is a Python library for Windows network protocols, with scripts widely used innetwork reconnaissance and credential extraction.}{https://github.com/fortra/impacket}
+
+\toolref{Metasploit}{v6.4.18}{Metasploit is a versatile C2 tool with modules for reconnaissance, exploitation, and vulnerability scanning.}{https://github.com/rapid7/metasploit-framework}
+
+\toolref{NetExec}{v1.3.0}{NetExec (formerly CrackMapExec) is a multi-protocol tool for Windows and Active Directory, supporting reconnaissance, exploitation, and post-exploitation actions.}{https://github.com/Pennyw0rth/NetExec}
+
+\toolref{Nmap}{v7.9.4}{Nmap is the industry standard network discovery tool used to scan hosts, ports, and services, aiding in network reconnaissance.}{https://github.com/nmap/nmap}
+
+\toolref{PEASS-ng}{v20241101}{PEASS-ng (LinPEAS, WinPEAS) quickly enumerates privilege escalation vulnerabilities across systems.}{https://github.com/carlospolop/PEASS-ng}
+
+\toolref{Responder}{v3.1.5.0}{Responder can allow an attacker to maliciously respond to various name server requests on a domain and can be used as an easy way to view authentication attempts over the network when done to the client running Responder.}{https://gitlab.com/kalilinux/packages/responder}
+
+\toolref{Sliver}{v1.5.42}{Sliver is a multiplayer capable C2 framework enabling persistence, network pivoting, and shared access for compromised machines.}{https://github.com/BishopFox/sliver}
+

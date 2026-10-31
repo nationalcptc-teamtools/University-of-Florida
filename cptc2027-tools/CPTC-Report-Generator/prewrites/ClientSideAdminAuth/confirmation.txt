@@ -1,0 +1,1 @@
+As illustrated in Figure, \team successfully extracted the admin credentials utilizing the default developer tools available in Google Chrome.

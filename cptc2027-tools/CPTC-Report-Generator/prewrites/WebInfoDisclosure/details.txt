@@ -1,0 +1,1 @@
+The web application exposes an endpoint at <code>/api/auth/query/AllUsers</code> that allows any user to access detailed information about all other users on the platform. This data includes personally identifiable information PII such as first names, last names, email addresses, and dates of birth.

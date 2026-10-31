@@ -1,0 +1,1 @@
+A DNS Zone Transfer is possible on the DNS server at <code>@ns01</code>, exposing the full list of domain names, subdomains, and associated IP addresses within the network. This can allow an attacker to gather sensitive information about the network's structure through DNS records, which can be utilized for further attacks.

@@ -1,0 +1,1 @@
+Jellyfin's web interface enables logging in to the 'jellyfin' user without a password. This account is an administrator, with permissions to edit the service's configuration, users, plugins, and running state. As a user, the account can also view the media stored on the service.

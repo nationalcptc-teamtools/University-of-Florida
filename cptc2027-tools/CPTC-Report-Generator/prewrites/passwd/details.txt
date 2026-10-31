@@ -1,0 +1,1 @@
+The /etc/passwd file, which is used to store user account information, was found to have world-writable privileges, meaning that any user could modify the file.<br><br>Thus, users with malicious intent could edit this file to either create a new root-level account or give an existing an account root privileges, giving them full control over the system.

@@ -1,0 +1,1 @@
+<div>The company is recommended to immediately modify the permissions of the private SSH key using the following command: <code>chmod 600 ~/.ssh/id_rsa</code></div><div>Following this, it is recommended that the company regularly ensure that SSH key permissions are configured to prevent unauthorized users from reading the private key file.</div>

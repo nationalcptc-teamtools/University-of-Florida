@@ -1,0 +1,1 @@
+An attacker can easily guess these credentials to gain unauthorized access as a privileged user to the service. This allows an adversary to perform sensitive actions, such as: viewing sensitive data, modifying records, and disrupting operations. [Examples of disruption for the specific service]

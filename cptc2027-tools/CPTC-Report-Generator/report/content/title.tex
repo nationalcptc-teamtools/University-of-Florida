@@ -1,0 +1,59 @@
+%CUSTOMIZING THE FOOTER
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\teamNoSpace}
+\fancyfoot[C]{\textbf{\color{highRed} CONFIDENTIAL - DO NOT DISTRIBUTE}}
+\fancyfoot[R]{\thepage}
+
+%TITLE
+\begin{titlepage}
+    \thispagestyle{fancy}
+    \fancyhf{}
+    \fancyfoot[L]{\singlespacing
+    \vspace{-75pt} \small \color{red} \textbf{WARNING:}\color{black}\ 
+     This report contains confidential information solely intended for \client and may contain information protected by law. If you are not the intended recipient, please inform \team immediately by email at \href{mailto:\teamEmail}{\teamEmail}}
+    \begin{center}
+        
+
+        \vspace{1.25in}
+
+        \textbf{\fontsize{26}{40}\selectfont \client}\\
+        \vspace{0.25in}
+        {\fontsize{20}{40}\selectfont Penetration Testing Report }
+
+        \vspace{0.75in}
+
+        \includegraphics[width=5.5in]{images/CompanyLogo.png}
+
+        \vspace{0.75in}
+
+        \Large \color{gray} \team
+        
+        \reportDay
+    \end{center}
+\end{titlepage}
+
+%TABLE OF CONTENTS
+\newpage
+\tableofcontents\thispagestyle{fancy}
+
+% \newpage
+%PAGE WITH CONTACT AND SMALL INFO
+
+\mbox{}
+
+\vfill
+
+\includegraphics[width=1in]{images/CompanyLogo.png}
+
+{\small This engagement was performed in accordance with the signed agreements put forth by \textit{\clientNoSpace}, and the procedures were limited to those described in the scope and rules of that agreement. The findings and recommendations resulting from this assessment are provided in the attached report. Given the time-limited scope of this assessment, the findings in this report should not be taken as a comprehensive listing of all security issues.
+
+\normalsize
+\textbf{Contact Information}\\
+\small
+\team \\
+\teamPhone\\
+\href{mailto:\teamEmail}{\teamEmail}
+}
+
+\vspace{0.5in}

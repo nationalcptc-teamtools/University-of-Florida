@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Findings Manager</title>
+  <link rel="stylesheet" type="text/css" media="all" href="/static/styles.css">
+  <link rel="stylesheet" type="text/css" media="all" href="/static/cvss.css">
+  <script src="/static/cvss.js"></script>
+</head>
+<body>
+  <div id="main">
+    <div id="editor">
+      <span id="status"></span>
+      <h2 id="Settings title">Settings</h2>
+
+      <div id="team-details">
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>Team Name</h3>
+	    <button class="field-save-btn" data-field="team-name" title="Save Team Name">S</button>
+	    </div>
+	    <div id="team-name-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>Team Email</h3>
+	    <button class="field-save-btn" data-field="team-email" title="Save Team Email">S</button>
+	    </div>
+	    <div id="team-email-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>Team Phone Number</h3>
+	    <button class="field-save-btn" data-field="team-phone" title="Save Team Phone Number">S</button>
+	    </div>
+	    <div id="team-phone-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>Client Name</h3>
+	    <button class="field-save-btn" data-field="client-name" title="Save Client Name">S</button>
+	    </div>
+	    <div id="client-name-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+      </div>
+
+      <div id="time-details">
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>Start Time</h3>
+	    <button class="field-save-btn" data-field="start-time" title="Save Start Time">S</button>
+	    </div>
+	    <div id="start-time-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>End Time</h3>
+	    <button class="field-save-btn" data-field="end-time" title="Save End Time">S</button>
+	    </div>
+	    <div id="end-time-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+	<div class="field-section">
+	    <div class="field-header">
+	    <h3>Report Submission Time</h3>
+	    <button class="field-save-btn" data-field="report-time" title="Save Report Submission Time">S</button>
+	    </div>
+	    <div id="report-time-editor" class="text-box" contenteditable="true"> </div>
+	</div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Short Scope</h3>
+          <div class="toolbar" data-target="short-scope-editor" id="short-scope-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="short-scope" title="Save Short Scope">S</button>
+        </div>
+        <div id="short-scope-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <h2 id="Executive title">Executive Summary</h2>
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Executive Overview</h3>
+          <div class="toolbar" data-target="executive-editor" id="executive-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="executive" title="Save Executive Overview">S</button>
+        </div>
+        <div id="executive-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Rationale</h3>
+          <div class="toolbar" data-target="rationale-editor" id="rationale-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="rationale" title="Save Rationale">S</button>
+        </div>
+        <div id="rationale-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+      
+      <h2 id="Engagement title">Engagement Overview</h2>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Goals</h3>
+          <div class="toolbar" data-target="goals-editor" id="goals-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="goals" title="Save Goals">S</button>
+        </div>
+        <div id="goals-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>AI Workflow Integration</h3>
+          <div class="toolbar" data-target="ai-workflow-editor" id="ai-workflow-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="ai-workflow" title="Save AI Workflow">S</button>
+        </div>
+        <div id="ai-workflow-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Analysis of AI Efficacy</h3>
+          <div class="toolbar" data-target="ai-efficacy-editor" id="ai-efficacy-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="ai-efficacy" title="Save AI Efficacy">S</button>
+        </div>
+        <div id="ai-efficacy-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Scope</h3>
+          <div class="toolbar" data-target="scope-editor" id="scope-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="scope" title="Save Scope">S</button>
+        </div>
+        <div id="scope-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Strengths</h3>
+          <div class="toolbar" data-target="strengths-editor" id="strengths-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="strengths" title="Save Strengths">S</button>
+        </div>
+        <div id="strengths-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <div class="field-section">
+        <div class="field-header">
+          <h3>Recommendations</h3>
+          <div class="toolbar" data-target="recommendations-editor" id="recommendations-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+          <button class="field-save-btn" data-field="recommendations" title="Save Recommendations">S</button>
+        </div>
+        <div id="recommendations-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <button class="simple-btn" id="save-btn">Save All</button>
+
+    </div>
+  </div>
+
+  <script src="/static/overview.js"></script>
+  <script>
+    document.querySelectorAll('.toolbar').forEach(toolbar => {
+      const targetId = toolbar.dataset.target;
+      const editor   = document.getElementById(targetId);
+      if (!editor) return;
+    
+      toolbar.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+    
+        const cmd = btn.dataset.cmd;
+        const action = btn.dataset.action;
+        if (cmd) {
+          editor.focus();
+          document.execCommand(cmd, false, null);
+        } else if (action) {
+          const selection = window.getSelection();
+          const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+
+          if (!range && action !== 'image') return;
+
+          if (action === 'inline-code') {
+            const span = document.createElement('code');
+            span.textContent = selection.toString();
+            range.deleteContents();
+            range.insertNode(span);
+          }
+
+          if (action === 'code-block') {
+            const pre = document.createElement('pre');
+            const code = document.createElement('code');
+            code.textContent = selection.toString() || 'your code here';
+            pre.appendChild(code);
+            range.deleteContents();
+            range.insertNode(pre);
+          }
+
+          if (action === 'link') {
+            const url = prompt('Enter URL:');
+            if (url) {
+              document.execCommand('createLink', false, url);
+            }
+          }
+
+          if (action === 'image') {
+            if (typeof window.openImagePicker === 'function') {
+              window.openImagePicker(targetId, range ? range.cloneRange() : null);
+            }
+          }
+        } else {
+          return;
+        }
+    
+      });
+    });
+
+  </script>
+</body>
+</html>
+

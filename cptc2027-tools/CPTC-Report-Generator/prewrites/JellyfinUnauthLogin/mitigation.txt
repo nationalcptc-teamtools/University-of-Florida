@@ -1,0 +1,1 @@
+Implement and enforce authentication for all Jellyfin accounts, with strong passwords on Administrator accounts.

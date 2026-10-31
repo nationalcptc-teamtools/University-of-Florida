@@ -1,0 +1,7 @@
+To enhance the velocity and depth of the assessment and test the tools that \client had given us access to, \team integrated an Agentic AI workflow utilizing the Claude Workbench and Claude CLI. This system helped us ingest high-volumes of log data, correlate vulnerability scans, and standardize our reporting metrics.\bigskip
+\bigskip
+The AI system was integrated into specific phases of the engagement lifecycle:
+
+\begin{itemize}
+\item \textbf{Vulnerability Discovery \& Correlation:} The Claude CLI was utilized to ingest raw output from enumeration tools such as Nmap and NetExec [1][2]. This allowed for rapid correlation between open ports and potential misconfigurations, specifically aiding in the identification of the unauthenticated Bridge Command Center on port 8080 [3] and the Ballast Control System on port 9000 [4].\item \textbf{Log Analysis:} The system processed extensive datasets to identify anomalies that might escape manual review. This capability was instrumental in analyzing the extracted database schema during the Local File Inclusion (LFI) exploitation [5], verifying the relationship between the \texttt{\detokenize{boatgps}} credentials and the live navigation database.\item \textbf{Reporting Standardization:} The Claude Workbench was employed to synthesize finding data, ensuring consistent formatting of CVSS v3.1 vectors and generating standardized descriptions for remediations [6].
+\end{itemize}

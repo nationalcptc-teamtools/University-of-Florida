@@ -1,0 +1,57 @@
+\section{Executive Summary}
+
+\noindent
+\begin{minipage}[t]{0.70\textwidth}
+    \input{content/executive}
+
+    Overall, \total{totalFindings} total findings that could be a risk to \clientP business were identified. 
+    
+\end{minipage}
+\hfill % Push minipages apart
+\begin{minipage}[t]{0.25\textwidth}
+    \textbf{Finding Counts}\\
+    \small
+    {\leaveColor{criticalPurple} \textbf{\total{criticalFindings}} Critical}\\
+    {\leaveColor{highRed} \textbf{\total{highFindings}} High}\\
+    {\leaveColor{mediumOrange} \textbf{\total{mediumFindings}} Medium}\\
+    {\leaveColor{lowGreen} \textbf{\total{lowFindings}} Low}\\
+    {\leaveColor{infoBlue} \textbf{\total{informationalFindings}} Informational}\\
+    \rule{0.6\linewidth}{0.4pt}
+    
+    \textbf{\total{totalFindings}} Total Findings\\
+
+    % ENABLE FOR GLOBALS
+    \textbf{7} Findings remediated\\
+
+    \normalsize
+    \textbf{Scope}\\
+    \small
+    \input{content/scope}
+
+   % Azure \& Entra ID\\
+    Limited Social Engineering\\
+    % Limited Vishing\\
+    % Brief AI Assessment\\
+
+    \normalsize
+    \textbf{Timeline}\\
+    \small
+    Engagement Began\\
+    \texttt{\engagementStartTime}
+
+    \medskip
+
+    Engagement Concluded\\
+    \texttt{\engagementEndTime}
+
+    \medskip
+
+    Report Delivered\\
+    \texttt{\reportTime}
+\end{minipage}
+
+\vspace{2.5cm}
+
+\input{content/engagementOverview/risk_graph}
+
+\newpage

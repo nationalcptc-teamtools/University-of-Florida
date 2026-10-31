@@ -1,0 +1,1 @@
+<a href="https://heimdalsecurity.com/blog/dns-zone/">Heimdal Security - DNS Zone Transfer: What It Is and How to Protect Against It</a>

@@ -1,0 +1,1 @@
+\team found that the LDAP service on &gt;ip&gt; responds to unauthenticated queries and exposes critical directory information.

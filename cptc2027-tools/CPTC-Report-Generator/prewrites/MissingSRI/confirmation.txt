@@ -1,0 +1,1 @@
+\team visited the webpages using a web browser such as Microsoft Edge, Google Chrome, or Mozilla Firefox and noticed that some `&gt;script&gt;` tags on those websites that contained an `src` tag from a third-party source lacked the `integrity` attribute

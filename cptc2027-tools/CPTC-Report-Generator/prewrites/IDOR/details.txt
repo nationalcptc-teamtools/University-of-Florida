@@ -1,0 +1,1 @@
+The <code>yyy.chat</code> web application contains an Insecure Direct Object Reference (IDOR) vulnerability that allows an attacker to create posts on behalf of other registered users. This enables attackers to impersonate users by submitting posts under their names without proper authorization or consent.

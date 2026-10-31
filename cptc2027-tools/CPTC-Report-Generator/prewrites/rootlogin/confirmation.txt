@@ -1,0 +1,1 @@
+\team checked&nbsp;<code>/etc/ssh/sshd\_config</code> and noticed that&nbsp;<code>PermitRootLogin no</code> was not present.

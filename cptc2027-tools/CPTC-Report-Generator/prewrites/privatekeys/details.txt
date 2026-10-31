@@ -1,0 +1,1 @@
+Weak file permissions were identified on a private SSH key file (id\_rsa) located in a user's .ssh directory. SSH keys are used to securely authenticate users and provide access to remote systems. If unauthorized users can read or access a private SSH key file, they can gain access to remote systems where the key is authorized, allowing them to impersonate a legitimate user.

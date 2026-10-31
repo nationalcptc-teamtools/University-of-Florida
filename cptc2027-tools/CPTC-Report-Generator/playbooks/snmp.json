@@ -1,0 +1,10 @@
+[
+  {
+    "text": "Identify community strings",
+    "cmd": "onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt SERVER_IP"
+  },
+  {
+    "text": "Brute-force OIDs",
+    "cmd": "braa <community string>@<IP>:.1.3.6.*"
+  }
+]

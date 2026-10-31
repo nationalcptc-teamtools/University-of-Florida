@@ -1,0 +1,1 @@
+<ol><li>Log in as Administrator to [IP]</li><li>Press Win+R</li><li>Open up gpedit.msc</li><li>Go to Computer Configuration &gt; Security Settings &gt; Account Policies &gt; Password Policy</li><li>Note the weak password policy</li></ol>

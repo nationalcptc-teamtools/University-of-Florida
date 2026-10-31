@@ -1,0 +1,1 @@
+If a user can run a binary as root without prior authentication, malicious, that user can gain root access and modify sensitive files on the system.

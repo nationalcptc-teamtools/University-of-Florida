@@ -1,0 +1,468 @@
+\usepackage{fontspec}
+
+% For nice Kerning
+\usepackage[final]{microtype}
+\usepackage{fontspec}
+
+\setmainfont[Ligatures=TeX]{IBM Plex Sans}
+
+\usepackage[letterpaper, margin=1in]{geometry}
+
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{anyfontsize}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{xstring}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{multicol}
+\usepackage{multirow}
+
+% Counter for final counts
+\usepackage{totcount}
+\usepackage{ifthen}
+
+%%% Configuring code block stuff
+\usepackage{listings}
+
+\usepackage[final]{pdfpages}
+
+%Caption Label Color
+\DeclareCaptionLabelFormat{colored}{\color{\currentFindingColor}#1 #2}
+\captionsetup[lstlisting]{labelformat=colored}
+
+%Caption Color
+\DeclareCaptionFont{colored}{\color{\currentFindingColor}}
+\captionsetup[lstlisting]{font={colored,small}}
+
+\definecolor{lstgreen}{rgb}{0,0.6,0}
+\definecolor{lstgray}{rgb}{0.5,0.5,0.5}
+\lstset{
+  basicstyle=\ttfamily\small,
+  commentstyle=\color{lstgray},
+  keywordstyle=\color{lstgreen},
+  stringstyle=\color{blue},
+  frame=l,
+  framexleftmargin=3pt,
+  rulecolor=\color{\currentFindingColor},
+  columns=flexible,
+  breakatwhitespace=false,
+  keepspaces=true,
+  breaklines=true,
+  tabsize=2,
+  captionpos=b
+}
+%%%%
+
+\usepackage{tabularx}
+\usepackage{xltabular}
+\setlength{\extrarowheight}{5pt}
+\newcolumntype{s}{>{\centering\arraybackslash}X}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+%SECTION SPACING
+\usepackage{titlesec}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{7pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{7pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{7pt plus 2pt minus 2pt}
+
+%REMOVE SECTION NUMBERING BUT KEEP IN TOC
+% Commented out based on feedback
+%\titleformat{\section}{\normalfont\LARGE\bfseries}{}{0pt}{}
+%\titleformat{\subsection}{\normalfont\large\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\color{gray}\normalfont\large}{}{0pt}{}
+
+%ITEMIZE STUFF
+\renewcommand\labelitemi{{$\bullet$}}                   %Make itemize bullet points bigger
+\setitemize{itemsep=-10pt}                              %Make itemize spacing lesser
+\setenumerate{itemsep=-10pt}                            %Make enumerate spacing lesser
+
+%One more color for that one table
+\definecolor{darkBlue}{HTML}{002060}
+
+%COLORS
+\definecolor{infoBlue}{HTML}{007CBF}
+\definecolor{lowGreen}{HTML}{27AE4D}
+\definecolor{mediumOrange}{HTML}{f5890f}
+\definecolor{highRed}{HTML}{FF3030}
+\definecolor{criticalPurple}{HTML}{600080}
+
+%COLORS for background
+\definecolor{infoBlueBackground}{HTML}{1995D8}
+\definecolor{lowGreenBackground}{HTML}{40C766}
+\definecolor{mediumOrangeBackground}{HTML}{FFA228}
+\definecolor{highRedBackground}{HTML}{FF3030}
+\definecolor{criticalPurpleBackground}{HTML}{600080}
+
+%Current Finding Color, changes to color coordinate findings
+\newcommand{\currentFindingColor}{black}
+\newcommand{\currentFindingBackground}{black}
+%Some other variables related to figures and evidence
+\newcommand{\imageWidth}{6in}
+\newcommand{\imageBorderWidth}{1pt}
+
+%Gap to close the table
+\newcommand{\closeTableGap}[0]{\vspace{-0.45cm}}
+\newcommand{\postTableGap}[0]{\vspace{0.3cm}}
+
+
+\renewcommand{\headrulewidth}{0pt}                      %Remove weird header line
+\renewcommand{\contentsname}{Table of Contents}         %Change TOC Title
+
+%CUSTOM COMMANDS
+\newcommand{\leaveColor}[1]{\leavevmode\color{#1}}      %Color with leaveevmode
+\newif\ifaffectedSystemsSep                             %For making affected systems table (with recursion)
+\newcommand*{\affectedSystems}[1]%
+    {
+    \arrayrulecolor{\currentFindingColor}
+    \par\begin{tabularx}{\textwidth}{|s|s|s|s|}
+        \multicolumn{4}{|>{\centering\arraybackslash}p{\dimexpr0.97\linewidth-2\arrayrulewidth}|}{\textbf{Affected Systems}}\\
+        \hline
+        \textbf{IP Address} & \textbf{Port} & \textbf{Service} & \textbf{Version}\\
+        \hline
+        \affectedSystemsSepfalse
+        \affectedSystemsScan#1\relax\relax\relax\relax
+    \end{tabularx}\par
+    \arrayrulecolor{black}
+    \postTableGap
+}
+\newcommand{\affectedSystemsScan}[4]%
+  {\ifx\relax#1\empty
+  \else
+    \ifaffectedSystemsSep
+    \else
+      \affectedSystemsSeptrue
+    \fi
+    #1 & #2 & #3 & #4\\\hline
+    \expandafter\affectedSystemsScan
+  \fi
+}
+\newcommand\cvss[4]%                                    %For making the CVSS table
+{
+    \arrayrulecolor{\currentFindingColor}
+    {\begin{tabularx}{\textwidth}{|s|s|s|s|s|}
+        \hline
+        \vspace{-13pt}\leaveColor{%
+            \ifdim#1pt>8.99pt
+                criticalPurple%
+            \else
+                \ifdim#1pt>6.99pt
+                    highRed%
+                \else
+                    \ifdim#1pt>3.99pt
+                        mediumOrange%
+                    \else
+                        \ifdim#1pt>0.99pt
+                            lowGreen%
+                        \else
+                            infoBlue%
+                        \fi
+                    \fi
+                \fi
+            \fi
+        } \Huge  \multirow{3}*{\textbf{#1}}
+            & \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\
+        \cline{2-5}
+        & \textbf{Vector} & \multicolumn{3}{c|}{#4}\\
+        \cline{2-5}
+        & \textbf{Likelihood} & \textbf{\IfEqCase{#2}{%
+            {0}{\leaveColor{infoBlue} Insignificant}%
+            {1}{\leaveColor{lowGreen} Low}%
+            {2}{\leaveColor{mediumOrange} Moderate}%
+            {3}{\leaveColor{highRed} High}%
+            {4}{\leaveColor{criticalPurple} Very High}%
+        }}& \textbf{Impact} & \leaveColor{criticalPurple} \textbf{\IfEqCase{#3}{%
+            {0}{\leaveColor{infoBlue} Insignificant}%
+            {1}{\leaveColor{lowGreen} Tolerable}%
+            {2}{\leaveColor{mediumOrange} Moderate}%
+            {3}{\leaveColor{highRed} Serious}%
+            {4}{\leaveColor{criticalPurple} Catastrophic}%
+        }}\\
+        \hline
+    \end{tabularx}%
+    \closeTableGap
+    }
+}
+\newcommand\includeEvidence[1]%                         %For including evidence. centered & set width
+    {\begin{center}
+        \begin{adjustbox}{cframe={\currentFindingColor} \imageBorderWidth}
+            \includegraphics[width=\imageWidth]{#1}  
+        \end{adjustbox}
+    \end{center}  
+}
+\newcommand\includeFigure[3]%                           %For including a figure. centered & set width
+    {\begin{figure}[h!]
+        \centering
+        \begin{adjustbox}{cframe={\currentFindingColor} \imageBorderWidth}
+            \includegraphics[width=\imageWidth]{#1}  
+        \end{adjustbox}
+        \captionsetup{labelfont={color=\currentFindingColor},textfont={color=\currentFindingColor}}
+        \caption{#2}
+        \label{#3}
+    \end{figure}  
+}
+
+%REMOVE TOC NUMBERING
+\usepackage{tocloft}
+% Commented out based on feedback
+%\renewcommand\numberline[1]{}
+
+% RISK SUBSECTION COMMAND
+\newcommand{\riskSubsection}[1]
+{
+    {
+    \renewcommand{\arraystretch}{1.85}
+    \addcontentsline{toc}{subsection}{#1}
+    \begin{tabularx}{\textwidth}{>{\hsize=0.0001\hsize}X >{\hsize=0.9999\hsize}X}
+    \cellcolor{\currentFindingBackground} & \raisebox{0.15em}{\huge \leaveColor{\currentFindingColor}#1}
+    \end{tabularx}
+    }
+}
+% FINDING SUBSUBSECTION COMMAND
+\newcommand{\findingSubsubsection}[1]
+{
+    {
+    \renewcommand{\arraystretch}{1.25}
+    \addcontentsline{toc}{subsubsection}{\thefinding #1}
+    \begin{tabularx}{\textwidth}{>{\hsize=0.0001\hsize}X >{\hsize=0.9999\hsize}X}
+    \cellcolor{\currentFindingBackground} & \raisebox{0.15em}{\large \leaveColor{\currentFindingColor}\thefinding #1}
+    \end{tabularx}
+    \medskip
+    }
+}
+% FINDINGS SECTION LIKE DETAILS, CONFIRMATION, ETC
+\newcommand{\findingSect}[1]{
+    {\color{\currentFindingColor} \large \textbf{#1}}
+}
+
+
+% REMEDIATION ENTRY COMMAND
+%\newcommand{\remediationEntry}[1]
+%{
+%    {
+%    \renewcommand{\arraystretch}{1.25}
+%    \begin{tabularx}{\textwidth}{>{\hsize=0.0001\hsize}X >{\hsize=0.9999\hsize}X}
+%    \cellcolor{\currentFindingBackground} & \raisebox{0.15em}{\large %\leaveColor{\currentFindingColor}#1}
+%    \end{tabularx}
+%    \medskip
+%    }
+%}
+%\newcommand{\remediationHeader}
+%{
+%    {
+%    %\renewcommand{\arraystretch}{1.25}
+%    \begin{tabularx}{\textwidth}{| >{\hsize=0.666\hsize}X !{\vrule width 1.2pt} >{\hsize=0.333\hsize\centering\arraybackslash}X |}
+%        \hline
+%        \cellcolor{darkBlue}\leaveColor{white}\textbf{Vulnerability} & \cellcolor{darkBlue}\leaveColor{white}\textbf{Remediation Status}\\
+%        \hline
+%    \end{tabularx}
+%    }
+%    %\vspace{-0.4pt}
+%}
+%\newcommand{\remediationEntry}[2]
+%{
+%    \vspace{-0.4pt}
+%    {
+%    %\noindent
+%    %\vspace{-\baselineskip}
+%    %\vspace{-17.4pt}
+%    \renewcommand{\arraystretch}{1.25}
+%    \begin{tabularx}{\textwidth}{| >{\hsize=0.666\hsize}X | >{\hsize=0.333\hsize\centering\arraybackslash}X |}
+%        \leaveColor{\currentFindingColor}\textbf{#1} & \cellcolor{\currentFindingBackground}\leaveColor{white}\textbf{#2}\\
+%        \hline
+%    \end{tabularx}
+%    }
+%}
+%\newcommand{\remediationDescription}[1]
+%{
+%    {
+%    %\noindent
+%    %\vspace{-\baselineskip}
+%    %\vspace{-18.4pt}
+%    \renewcommand{\arraystretch}{1.25}
+%    \begin{tabularx}{\textwidth}{| X |}
+%        #1\\
+%        \hline
+%    \end{tabularx}
+%    }\\
+%    %\vspace{5pt}
+%}
+
+\newcommand{\remediationHeader}[1]
+{
+    {
+    %\renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\textwidth}{| X |}
+        \hline
+        \cellcolor{\currentFindingBackground}\leaveColor{white}\textbf{#1}\\
+        \hline
+    \end{tabularx}
+    }
+    \vspace{-2.4pt}
+}
+\newcommand{\remediationEntry}[2]
+{
+    %\vspace{-0.4pt}
+    {
+    %\noindent
+    \vspace{-\baselineskip}
+    %\vspace{-17.4pt}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\textwidth}{| X |}
+        \leaveColor{\currentFindingColor}\textbf{#1} \\
+        \hline
+    \end{tabularx}
+    }
+}
+%\newcommand{\remediationDescription}[1]
+%{
+%    {
+%    %\noindent
+%    \vspace{-\baselineskip}
+%    \vspace{1pt}
+%    %\vspace{-18.4pt}
+%    \renewcommand{\arraystretch}{1.25}
+%    \begin{tabularx}{\textwidth}{| X |}
+%        #1\\
+%        \hline
+%    \end{tabularx}
+%    }\\
+%    %\vspace{5pt}
+%}
+
+%For auto noindent (after tocloft)
+\usepackage{parskip}        
+\setlength{\parskip}{0.75\baselineskip plus 2pt}
+
+\onehalfspacing
+
+
+% For tools appendix
+\newcommand{\toolref}[4]{
+    \subsubsection*{#1 \hfill \small #2}
+    \label{sec:#1}
+
+    #3
+
+    %\texttt{Source: \href{#4}{#4}}
+    \texttt{\href{#4}{#4}}
+}
+
+% Reference URL and show the URL
+\newcommand{\aref}[1]{
+    \href{#1}{\url{#1}}
+}
+% Eat the period in bib
+\newcommand\EatDot[1]{}
+% Refernece URL in bib to do all the magic
+\newcommand\bibURL[1]{
+    \\ \aref{#1}\EatDot
+}
+
+\newcommand{\closeFinding}{
+    \begin{center}
+    \textbf{\Large END OF FINDING BLOCK}
+    \end{center}
+    \newpage
+}
+
+%%% Coutner for the findings
+
+%%totcounter
+\newtotcounter{totalFindings}
+\newtotcounter{criticalFindings}
+\newtotcounter{highFindings}
+\newtotcounter{mediumFindings}
+\newtotcounter{lowFindings}
+\newtotcounter{informationalFindings}
+%%
+
+\newcounter{finding}
+\newcounter{findingSection}
+\newcommand{\findingSection}{N}
+\setcounter{finding}{1}
+\renewcommand{\thefinding}{\findingSection\arabic{finding}: }
+
+\newcommand{\setFindingSection}[1]{%
+    \renewcommand{\findingSection}{#1}%
+    \setcounter{finding}{1}%
+}
+\newcommand{\incrementFinding}{%
+    \stepcounter{finding}%
+    \stepcounter{totalFindings}%
+    \ifthenelse{\equal{\currentFindingColor}{criticalPurple}}{
+        % Code for critical purple
+        \stepcounter{criticalFindings}
+    }{
+        \ifthenelse{\equal{\currentFindingColor}{highRed}}{
+            % Code for high red
+            \stepcounter{highFindings}
+        }{
+            \ifthenelse{\equal{\currentFindingColor}{mediumOrange}}{
+                % Code for medium orange
+                \stepcounter{mediumFindings}
+            }{
+                \ifthenelse{\equal{\currentFindingColor}{lowGreen}}{
+                    % Code for low green
+                    \stepcounter{lowFindings}
+                }{
+                    \ifthenelse{\equal{\currentFindingColor}{infoBlue}}{
+                        % Code for info blue
+                        \stepcounter{informationalFindings}
+                    }{
+                        % Default case if none match
+                    }
+                }
+            }
+        }
+    }
+}
+
+% importFinding
+\newcommand{\importFinding}[1]{%
+    \fancyhead[R]{\textcolor{\currentFindingColor}{\Large \findingSection\arabic{finding}}}%
+    #1 %
+    \closeFinding%
+    \incrementFinding%
+}
+
+\newcounter{appendixcounter}
+\setcounter{appendixcounter}{0}
+
+\newcommand{\newAppendix}[1]{%
+    \stepcounter{appendixcounter}
+    \subsection{Appendix \Alph{appendixcounter}: #1}
+}
+%%%
+
+\newcommand{\team}{Finals 10 }
+\newcommand{\teamP}{Finals 10's }
+\newcommand{\teamNoSpace}{Finals 10}
+\newcommand{\teamEmail}{cptc11-Finals-10@cptc.team}
+\newcommand{\teamPhone}{+1 (833) 555-0112}
+\newcommand{\client}{All Ports Tours }
+\newcommand{\clientP}{All Ports Tours' }
+\newcommand{\clientNoSpace}{All Ports Tours}
+\newcommand{\product}{Y }
+\newcommand{\productP}{Y's }
+\newcommand{\productNoSpace}{Y}
+\newcommand{\engagementStartTime}{2026-01-09 09:30 EDT}
+\newcommand{\engagementEndTime}{2026-01-10 17:45 EDT}
+\newcommand{\timeRange}{Between January 9th and January 10th}
+\newcommand{\reportTime}{2026-01-10 23:59 EDT}
+\newcommand{\reportDay}{January 10th, 2026}
+
+\renewcommand{\texttt}[1]{{\ttfamily #1}}

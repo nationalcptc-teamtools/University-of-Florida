@@ -1,0 +1,1 @@
+<ol><li>Establish an RDP session to an affected machine.</li><li>At the Windows logon screen, click the “Ease of Access” icon in the bottom right corner.</li><li>Observe that a command prompt or other shell appears with administrative privileges, indicating that <code>utilman.exe</code> has been replaced.</li></ol>

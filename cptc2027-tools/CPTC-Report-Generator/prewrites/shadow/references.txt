@@ -1,0 +1,1 @@
+<a href="https://blog.geoda-security.com/2019/02/privilege-escalation-exploiting-write.html">https://blog.geoda-security.com/2019/02/privilege-escalation-exploiting-write.html</a>

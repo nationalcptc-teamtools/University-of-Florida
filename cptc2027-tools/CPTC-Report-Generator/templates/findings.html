@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Findings Manager</title>
+  <link rel="stylesheet" type="text/css" media="all" href="/static/styles.css">
+  <link rel="stylesheet" type="text/css" media="all" href="/static/cvss.css">
+  <script src="/static/cvss.js"></script>
+</head>
+<body>
+  <div id="sidebar">
+    <div id="top-bar">
+      <input id="new-finding-name" placeholder="New finding name">
+
+      <!-- Prewrite searchable dropdown -->
+      <label for="prewrite-select">Prewrite:</label>
+      <div class="prewrite-select-wrapper">
+        <input
+          type="text"
+	  id="prewrite-search"
+	  placeholder="Search prewrites..."
+	  autocomplete="off"
+	/>
+	<select id="prewrite-select">
+          <option value="">NONE</option>
+	  <!-- Filled from /api/prewrites -->
+	</select>
+      </div>
+
+
+      <button id="create-finding-btn">Create Finding</button>
+      <span id="status"></span>
+    </div>
+    <h3>Findings</h3>
+    <ul id="finding-list"></ul>
+  </div>
+
+  <div id="main">
+    <div id="editor">
+      <h2 id="current-finding-title">No finding selected</h2>
+
+      <div style="display: flex; justify-content: space-around">
+      <div class="field-section" style="width: 640px">
+	<div class="field-header">
+          <h3>CVSS</h3>
+	  <button class="field-save-btn" data-field="cvs" title="Save CVSS">S</button>
+	</div>
+        <div id="cvssboard"></div>
+        <div id="cvss-override-controls" class="cvss-override-controls">
+          <label class="cvss-override-toggle">
+            <input type="checkbox" id="cvss-override-enabled">
+            Use manual score override
+          </label>
+          <input
+            id="cvss-override-score"
+            type="number"
+            min="0.0"
+            max="10.0"
+            step="0.1"
+            placeholder="0.0"
+            disabled
+          >
+        </div>
+      </div>
+      <div class="field-section" style="width: 640px">
+	<div class="field-header">
+          <h3>IPs</h3>
+	  <button class="field-save-btn" data-field="ips" title="Save IPs">S</button>
+	</div>
+	<table id="textTable">
+	  <tbody>
+	    <!-- Template row: 4 textareas + + button -->
+	    <tr class="text-row-header">
+	      <td><b>IP</b></td>
+	      <td><b>Port</b></td>
+	      <td><b>Service</b></td>
+	      <td><b>Version</b></td>
+	    </tr>
+	    <tr class="text-row">
+	      <td><textarea rows="1"></textarea></td>
+	      <td><textarea rows="1"></textarea></td>
+	      <td><textarea rows="1"></textarea></td>
+	      <td><textarea rows="1"></textarea></td>
+	      <td>
+	        <button type="button" class="add-row-btn" onclick="addRow()">+</button>
+	        <button type="button" class="delete-row-btn" onclick="deleteRow(this)">-</button>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+      </div>
+      </div>
+      <div class="field-section">
+	<div class="field-header">
+          <h3>Details</h3>
+          <div class="toolbar" data-target="details-editor" id="details-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+	  <button class="field-save-btn" data-field="details" title="Save Details">S</button>
+	</div>
+        <div id="details-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+      <div class="field-section">
+	<div class="field-header">
+          <h3>Confirmation</h3>
+          <div class="toolbar" data-target="confirmation-editor" id="confirmation-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+	  <button class="field-save-btn" data-field="confirmation" title="Save Confirmation">S</button>
+	</div>
+        <div id="confirmation-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+      <div class="field-section">
+	<div class="field-header">
+          <h3>Impact</h3>
+          <div class="toolbar" data-target="impact-editor" id="impact-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+	  <button class="field-save-btn" data-field="impact" title="Save Impact">S</button>
+	</div>
+        <div id="impact-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+      <div class="field-section">
+	<div class="field-header">
+          <h3>Mitigation</h3>
+          <div class="toolbar" data-target="mitigation-editor" id="mitigation-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+	  <button class="field-save-btn" data-field="mitigation" title="Save Mitigation">S</button>
+	</div>
+        <div id="mitigation-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+      <div class="field-section">
+	<div class="field-header">
+          <h3>References</h3>
+          <div class="toolbar" data-target="references-editor" id="references-toolbar">
+            <button type="button" data-cmd="bold"><b>B</b></button>
+            <button type="button" data-cmd="italic"><i>I</i></button>
+            <button type="button" data-cmd="insertUnorderedList">• List</button>
+            <button type="button" data-cmd="insertOrderedList">1. List</button>
+            <button type="button" data-action="inline-code">`Code`</button>
+            <button type="button" data-action="code-block">( Code )</button>
+            <button type="button" data-action="link">Link</button>
+            <button type="button" data-action="image">Image</button>
+          </div>
+	  <button class="field-save-btn" data-field="references" title="Save References">S</button>
+	</div>
+        <div id="references-editor" class="text-box" contenteditable="true"> </div>
+      </div>
+
+      <button class="simple-btn" id="save-btn">Save All</button>
+
+      <div class="images-section">
+        <!-- Upload form -->
+        <div class="upload-area">
+          <input type="file" id="image-upload" accept="image/*" multiple>
+	  <label for="image-upload" class="upload-btn">
+            Choose Images
+	  </label>
+	</div>
+        <!-- Image gallery -->
+	<div id="image-gallery" class="image-gallery"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="image-picker-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Insert Uploaded Image</h3>
+        <button type="button" id="image-picker-close" class="modal-close">x</button>
+      </div>
+      <p id="image-picker-message" class="modal-message"></p>
+      <div id="image-picker-list" class="image-picker-list"></div>
+      <label class="image-picker-caption-label" for="image-picker-caption">
+        Caption
+      </label>
+      <input id="image-picker-caption" type="text" placeholder="Optional caption">
+      <div class="modal-actions">
+        <button type="button" id="image-picker-cancel">Cancel</button>
+        <button type="button" id="image-picker-insert">Insert Image</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/findings.js"></script>
+  <script>
+    document.querySelectorAll('.toolbar').forEach(toolbar => {
+      const targetId = toolbar.dataset.target;
+      const editor   = document.getElementById(targetId);
+      if (!editor) return;
+    
+      toolbar.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+    
+        const cmd = btn.dataset.cmd;
+        const action = btn.dataset.action;
+        if (cmd) {
+          editor.focus();
+          document.execCommand(cmd, false, null);
+        } else if (action) {
+          const selection = window.getSelection();
+          const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+
+          if (!range && action !== 'image') return;
+
+          if (action === 'inline-code') {
+            const span = document.createElement('code');
+            span.textContent = selection.toString();
+            range.deleteContents();
+            range.insertNode(span);
+          }
+
+          if (action === 'code-block') {
+            const pre = document.createElement('pre');
+            const code = document.createElement('code');
+            code.textContent = selection.toString() || 'your code here';
+            pre.appendChild(code);
+            range.deleteContents();
+            range.insertNode(pre);
+          }
+
+          if (action === 'link') {
+            const url = prompt('Enter URL:');
+            if (url) {
+              document.execCommand('createLink', false, url);
+            }
+          }
+
+          if (action === 'image') {
+            if (typeof window.openImagePicker === 'function') {
+              window.openImagePicker(targetId, range ? range.cloneRange() : null);
+            }
+          }
+        } else {
+          return;
+        }
+    
+      });
+    });
+
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,1 @@
+<a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/component-updates/ldap-ldap-policy">Microsoft: LDAP Security Guidance</a>

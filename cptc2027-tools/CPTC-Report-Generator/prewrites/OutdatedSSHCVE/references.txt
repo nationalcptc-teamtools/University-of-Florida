@@ -1,0 +1,1 @@
+<div><a href="https://ubuntu.com/security/CVE-2024-6387">https://ubuntu.com/security/CVE-2024-6387</a></div><div><a href="https://github.com/asterictnl-lvdw/CVE-2024-6387">https://github.com/asterictnl-lvdw/CVE-2024-6387</a></div>

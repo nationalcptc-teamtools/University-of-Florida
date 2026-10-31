@@ -1,0 +1,15 @@
+The root cause is trusting user input in a file inclusion function. To mitigate this, user input should never be directly passed to file system functions. The recommended approach is to use a strict allowlist.<br><br><div>For example, instead of using the parameter value directly, map it to a predefined list of safe files.</div><div><pre><code>// User input is passed directly to the include function
+require_once '/var/www/html/views/' . $_GET['page'] . '.php';</code></pre></div><div>The code above should be refactored to use an allowlist, as shown below. This ensures only approved files can be included.&nbsp;</div><div><pre><code>page=_GET['page'];
+$allowed_pages = [
+    'home' =&gt; 'home.php',
+    'profile' =&gt; 'profile.php',
+    'contact' =&gt; 'contact.php'
+];
+
+if array_key_exists$page, $allowed_pages {
+    require_once '/var/www/html/views/' . $allowed_pages[$page];
+} else {
+    // Handle invalid page request
+    include '/var/www/html/views/404.php';
+}
+</code></pre><br></div><div><br></div>

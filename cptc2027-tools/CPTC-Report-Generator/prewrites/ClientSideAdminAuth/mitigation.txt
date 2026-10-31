@@ -1,0 +1,1 @@
+To mitigate this risk, authentication should be implemented server-side, ensuring sensitive operations and credentials are securely validated on the back-end. Relying on client-side authentication poses significant security risks, as client-side code and data can be easily manipulated by attackers.

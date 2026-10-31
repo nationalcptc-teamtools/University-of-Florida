@@ -1,0 +1,1 @@
+\team found that the <code>utilman.exe</code> binary on several systems was substituted with a backdoored executable, allowing unauthorized privilege escalation at the Windows logon screen.

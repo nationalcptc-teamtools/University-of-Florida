@@ -1,0 +1,13 @@
+findings/
+scores.txt
+report/content/technicalReport/allFindings.tex
+report/content/technicalReport/findings/
+report/images/findings/
+report/main.pdf
+*.aux
+*.log
+*.toc
+*.fls
+*.gz
+*.out
+*.fdb_latexmk

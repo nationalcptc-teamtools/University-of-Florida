@@ -1,0 +1,1 @@
+<ol><li>Log in to the affected machine with administrator privileges.</li><li>Open the Start Menu and search for “Windows Firewall with Advanced Security.”</li><li>Once open, verify that under the “Domain Profile” section, the firewall status is set to “Off.”</li></ol>

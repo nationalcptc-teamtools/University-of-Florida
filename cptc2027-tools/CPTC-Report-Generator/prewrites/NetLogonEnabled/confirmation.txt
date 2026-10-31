@@ -1,0 +1,1 @@
+<ol><li>Run the following command to query LDAP without authentication:&nbsp; <code>ldapsearch -x -H ldap://ip -b "dc=example,dc=com"</code></li><li>Review the command output; observe the returned sensitive LDAP attributes and entries.</li></ol>

@@ -1,0 +1,1 @@
+Root login is allowed over SSH on certain hosts on \clientP network.

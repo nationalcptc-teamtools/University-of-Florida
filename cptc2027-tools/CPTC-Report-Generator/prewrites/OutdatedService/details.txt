@@ -1,0 +1,1 @@
+The &gt;service&gt; is installed with version &gt;version-number&gt;. This service version has been found to be vulnerable to [attack], and the tools to perform this exploit are publicly available.

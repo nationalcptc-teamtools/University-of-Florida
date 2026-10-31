@@ -1,0 +1,1 @@
+\team gained unauthorized access to the application by authenticating with the credentials <code>username:password</code>. This combination is a widely known default credential for this service and requires no advanced techniques to discover or exploit.

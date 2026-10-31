@@ -1,0 +1,1 @@
+To mitigate this vulnerability, the company should immediate change the permissions on the /etc/shadow file to 600, preventing non-root users from modifying the file.<br><br>The following command can be used to do so: <code>chmod 600 /etc/shadow</code>

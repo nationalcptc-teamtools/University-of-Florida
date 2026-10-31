@@ -1,0 +1,2 @@
+<div>To verify the presence of the vulnerability, navigate to the posts tab of the &gt;WEBSITE&gt; app and create a post containing raw JavaScript or HTML. The following payloads were tested and successfully rendered on the page:</div><div></div><pre><code>&gt;b&gt;HTML Injection Test&gt;/b&gt;
+&gt;img src=x onerror=console.log"xss"&gt;</code></pre><div></div>

@@ -1,0 +1,1 @@
+First, start the exploit docker (from JellyPwn <a href="https://github.com/ScribblerCoder/Jellypwn">https://github.com/ScribblerCoder/Jellypwn</a>). Next login to Jellyfin and go to Dashboard. Next go to plugins, then go to repositories, and copy the malicious plugin link to repositories. Then refresh catalog, install the plugin, and restart jellyfin. See the image below.

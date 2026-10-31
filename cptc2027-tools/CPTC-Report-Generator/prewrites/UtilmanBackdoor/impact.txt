@@ -1,0 +1,1 @@
+An attacker with access to the logon screen can obtain full administrative control of the affected system without valid credentials.

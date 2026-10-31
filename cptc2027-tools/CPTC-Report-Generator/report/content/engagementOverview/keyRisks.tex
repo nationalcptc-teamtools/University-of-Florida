@@ -1,0 +1,14 @@
+\subsection{Risks}
+
+Despite the improvements noted above, \team identified three critical risk areas that pose significant threats to \clientP safety, data integrity, and operational continuity. Addressing these vulnerabilities should be prioritized to prevent potential catastrophic incidents.
+
+\begin{enumerate}
+    \item \textbf{Critical Safety Systems Remain Exposed (Physical Risk):}  
+    The most urgent risk discovered is the continued exposure of maritime safety systems. \team found that the Ballast Control System, responsible for vessel stability, is accessible using default credentials (\texttt{guest:guest}). This allowed unauthorized viewing of stability metrics that were already flagged as "Unstable." Furthermore, the Bridge Command Center requires no authentication whatsoever. In a real-world scenario, these vulnerabilities could allow a malicious actor to impact the physical movement and stability of the vessel, creating a catastrophic safety risk to passengers and physical assets.
+
+    \item \textbf{Web Application Logic Flaws Leading to Data Breaches:}  
+    Testing revealed a severe "Local File Inclusion" (LFI) vulnerability in the ship's API. By manipulating the file download functionality, \team successfully extracted master database credentials. This access granted full read/write privileges to the GPS Tracker database, allowing \team to modify live operational data and exfiltrate sensitive navigation logs. This represents a direct threat to data integrity and passenger privacy, potentially leading to severe regulatory fines and reputational damage.
+
+    \item \textbf{Weak Identity Management \& "Master Key" Protection:}  
+    The core Active Directory environment governing user access remains vulnerable. \team identified critical service accounts—such as the one controlling ship stabilizers—protected by extremely weak passwords (e.g., one number and one dictionary word). Additionally, the system is configured to store passwords using reversible encryption, allowing attackers to retrieve credentials in plain text. Combined with the lack of Network Level Authentication (NLA), these misconfigurations make it trivial for an attacker to pivot from a single compromised workstation to a full takeover of the corporate network.
+\end{enumerate}

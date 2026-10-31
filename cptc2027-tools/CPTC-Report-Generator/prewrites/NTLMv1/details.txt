@@ -1,0 +1,1 @@
+NTLMv1 appeared to be enabled for network authentication on some Windows hosts on the domain. This is a problem, as NTLMv1 hashes are currently out of use because they have a cryptographic vulnerability that allows them to be downgraded to NTLM hashes, which are essentially as good as a password, and thus can be used for authentication.

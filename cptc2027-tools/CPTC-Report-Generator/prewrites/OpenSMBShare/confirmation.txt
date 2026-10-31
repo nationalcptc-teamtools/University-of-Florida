@@ -1,0 +1,2 @@
+<div>We use NetExec to mount the SMB shares. Notice it is accessible to unprivileged users.</div><pre><code>nxc smb FILL THIS IN -u j.fleischman -p J0elTHEM4n1990! --shares "IT"                             
+sudo mount -t cifs -o username=j.fleischman,password=J0elTHEM4n1990! FIIL THIS IN /mnt/smbshare</code></pre><div></div>

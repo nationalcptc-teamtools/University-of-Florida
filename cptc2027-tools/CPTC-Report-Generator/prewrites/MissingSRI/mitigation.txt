@@ -1,0 +1,1 @@
+Calculate the hash for all scripts loaded from third-party sources and add it to the `integrity` attribute of `script` tags.

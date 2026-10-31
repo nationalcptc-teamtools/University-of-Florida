@@ -1,0 +1,1 @@
+An attacker can view and interact with restricted application functionality, leading to unauthorized access, modification, or disclosure of sensitive data, such as [Example of Sensitive Data, e.g., user PII, financial records].

@@ -1,0 +1,1 @@
+<ul><li>Enforce NetNTLMv2 for network authentication, which is not vulnerable to cryptographic attacks. Note, however, that these hashes are still crackable, and must have strong passwords</li><li>Consider switching to kerberos-based authentication, which is the current standard for authentication.</li></ul>

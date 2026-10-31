@@ -1,0 +1,1 @@
+<ol><li>Open “Windows Firewall with Advanced Security” from the Control Panel.</li><li>In “Overview,” select “Windows Firewall Properties.”</li><li>Change “Firewall State” from “Off” to “On” for each profile.</li></ol>

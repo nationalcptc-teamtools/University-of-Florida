@@ -1,0 +1,10 @@
+[
+  {
+    "text": "Ensure VNC traffic is encrypted via an SSH tunnel",
+    "cmd": "idk"
+  },
+  {
+    "text": "See if you can connect",
+    "cmd": "xtightvncviewer localhost:5901"
+  }
+]

@@ -1,0 +1,1 @@
+{6.6}{2}{2}{CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:L}

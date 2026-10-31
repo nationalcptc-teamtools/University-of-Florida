@@ -1,0 +1,1 @@
+To confirm the vulnerability, the team tested the affected <code>api/auth/store/post</code> endpoint by manipulating the post request's poster\_id parameter. By using another user's ID, \team was able to submit posts on their behalf. No additional authentication or authorization was required, and the system allowed the creation of posts for any registered user.

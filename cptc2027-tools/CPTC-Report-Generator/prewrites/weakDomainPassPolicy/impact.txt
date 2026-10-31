@@ -1,0 +1,1 @@
+Having a weak password policy makes brute-force attacks easier for attackers.

@@ -1,0 +1,1 @@
+Jellyfin has a vulnerability where a reverse shell can be created via a plugin installation.

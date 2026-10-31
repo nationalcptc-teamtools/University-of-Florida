@@ -1,0 +1,1 @@
+<div>To confirm this misconfiguration, the following command can be used to examine the file permissions of files within the user's .ssh directory.</div><div><pre><code>ls -l /home/user/.ssh/id\_rsa</code></pre></div><div>As seen in the Figure below, the id\_rsa file permissions were set to -rw-r--r--, allowing any local user with system access to view the private key.</div>

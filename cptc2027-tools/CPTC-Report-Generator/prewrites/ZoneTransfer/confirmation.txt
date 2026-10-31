@@ -1,0 +1,1 @@
+<div>Run the following command to attempt a zone transfer from the DNS server: <code>dig axfr @ns01 yyy.chat</code></div><div>This command queries the DNS server for a full zone transfer of the <code>example.com</code> domain. If the server responds with a list of domain records, a zone transfer is enabled.</div>

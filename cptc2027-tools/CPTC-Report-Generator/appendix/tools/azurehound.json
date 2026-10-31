@@ -1,0 +1,1 @@
+{"name": "AzureHound", "version": "v2.2.1", "link": "https://github.com/SpecterOps/AzureHound", "description": "AzureHound is a tool used for Active Directory assessments, providing discovery and enumeration of Azure Active Directory misconfigurations and privilege escalation paths."}

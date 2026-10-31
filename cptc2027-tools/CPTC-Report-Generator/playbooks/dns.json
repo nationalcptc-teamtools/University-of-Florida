@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Check for DNS Zone Transfer",
+    "cmd": "dig axfr DOMAIN_NAME @DNS_SERVER_IP"
+  },
+  {
+    "text": "Domain Takeover: Check CNAME records for any expired domains",
+    "cmd": "Just do it"
+  },
+  {
+    "text": "DNS Spoofing via ettercap",
+    "cmd": "/etc/ettercap/etter.dns - VICTIM_DOMAIN A ATTACKER_IP"
+  }
+]

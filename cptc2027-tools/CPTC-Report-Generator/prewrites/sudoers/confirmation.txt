@@ -1,0 +1,1 @@
+<div>To confirm this misconfiguration, the following command can be used: <code>sudo -l</code></div><div>The output in the Figure below indicates that jane\_doe is able to execute bad\_binary without authentication.</div>

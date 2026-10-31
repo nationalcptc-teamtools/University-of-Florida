@@ -1,0 +1,1 @@
+The [Application Name or Service] utilizes weak, default, or easily guessable credentials for an authenticated account, often a privileged one. The application's login mechanism does not prevent an attacker from attempting to log in using a short list of commonly used default passwords.

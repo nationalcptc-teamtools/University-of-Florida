@@ -1,0 +1,1 @@
+To confirm this vulnerability, the following steps were taken:<br><div><ol><li><br></li></ol></div><div><br></div>Then the page was reloaded from <code>http://10.0.2.5:3000/</code>, which resulted in the admin panel being accessible without proper authentication. Allowing for the ability to view all users, change users' first and last names, email addresses, and ban status.

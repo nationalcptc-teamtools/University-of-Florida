@@ -1,0 +1,1 @@
+Server Message Block (SMB) is a multipurpose protocol commonly will used to share various resources between Windows machines on a network.<br><br>Sensitive files were exposed to unprivileged users in an SMB share.
