@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# setup.sh  --  CPTC attack-box setup (the "Setup Script" from The Notes > Tool List)
+# setup.sh  --  CPTC attack-box setup (installs the standard team pentest toolkit)
 #
 # WHAT IT DOES:
 #   Installs the standard pentest toolkit the team needs, grouped by the
@@ -45,7 +45,7 @@ APT_PKGS=(
 # --- pipx (Python) tools: cloud / AD / M365 / secrets -----------------------
 PIPX_TOOLS=(
   "impacket"                                   # secretsdump, getST, psexec, GetUserSPNs...
-  "git+https://github.com/0xZDH/o365spray"     # M365 user-enum + password spray (our M365 find)
+  "git+https://github.com/0xZDH/o365spray"     # M365 user-enum + password spray
   "dnstwist"                                   # look-alike domain discovery
   "bloodhound-ce"                              # AD attack-path analysis (ingestor side)
   "certipy-ad"                                 # AD CS (certificate) abuse
